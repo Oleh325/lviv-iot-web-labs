@@ -1,0 +1,41 @@
+.about {
+    width: 80vw;
+    height: 35rem;
+    display: flex;
+    align-items: center;
+    gap: 7.5rem;
+    background: var(--bg-secondary-color);
+    background-attachment: fixed;
+    border-radius: 3.125rem;
+}
+
+.about__image {
+    width: 32.5rem;
+    height: auto;
+}
+
+.about__content {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+}
+
+.about__title {
+    width: 475px;
+
+    font-family: Helvetica;
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 130%;
+
+    color: var(--text-primary-color);
+}
+
+.about__description {
+    width: 29.625rem;
+    height: 10.625rem;
+    font-weight: 500;
+    font-size: 1.25rem;
+    line-height: 160%;
+    color: var(--text-secondary-color);
+}

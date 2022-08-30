@@ -1,0 +1,45 @@
+@import "./fonts.css";
+
+:root {
+    --primary-color: #9C69E2;
+    --secondary-color: #F063B8;
+    --bg-primary-color: rgba(156, 105, 226, 0.15);
+    --bg-secondary-color: rgba(240, 99, 184, 0.15);
+    --bg-green-color: rgba(104, 201, 186, 0.1);
+    --bg-blue-color: rgba(45, 156, 219, 0.1);
+    --text-primary-color: #212353;
+    --text-secondary-color: #4B5D68;
+    --font: avenir;
+}
+
+* {
+    margin: 0;
+    border: none;
+}
+
+body {
+    font-family: var(--font), Helvetica;
+    overflow-x: hidden;
+}
+
+.container {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 7.8125rem;
+}
+
+a {
+    text-decoration: none;
+    color: unset;
+}
+
+li {
+    display: block;
+}
+
+button {
+    cursor: pointer;
+    background: none;
+}
