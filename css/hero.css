@@ -1,0 +1,43 @@
+.hero {
+    width: 80vw;
+    display: flex;
+}
+
+.hero__content {
+    display: flex;
+    flex-direction: column;
+    gap: 3.125rem;
+}
+
+.hero__title {
+    font-family: Helvetica;
+    width: 40.3125rem;
+    font-weight: 700;
+    font-size: 5rem;
+    line-height: 110%;
+    margin: 0;
+    color: var(--text-primary-color);
+}
+
+.hero__description {
+    font-weight: 500;
+    font-size: 1.125rem;
+    line-height: 160%;
+    width: 23.75rem;
+    color: var(--text-secondary-color);
+}
+
+.hero__button {
+    width: 10.625rem;
+    height: 3.75rem;
+    color: white;
+    background: var(--primary-color);
+    border-radius: 3.125rem;
+}
+
+.hero__image {
+    width: 55rem;
+    height: auto;
+    margin-left: -18rem;
+    margin-top: 5rem;
+}

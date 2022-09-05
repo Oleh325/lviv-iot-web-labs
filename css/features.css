@@ -1,0 +1,111 @@
+.features {
+    width: 80vw;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.features__header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3.125rem;
+}
+
+.features__title {
+    font-family: Helvetica;
+    font-weight: 700;
+    font-size: 2.5rem;
+    line-height: 130%;
+    color: var(--text-primary-color);
+}
+
+.features__description {
+    width: 36.5rem;
+    font-weight: 500;
+    font-size: 1.125rem;
+    line-height: 160%;
+    text-align: center;
+    color: var(--text-secondary-color);
+}
+
+.features__content {
+    display: inline-block;
+    margin-top: 6.25rem;
+    column-count: 2;
+    gap: 3.125rem;
+}
+
+.features__content-feature {
+    display: flex;
+    width: 33.25rem;
+    height: 22.375rem;
+    gap: 1.875rem;
+    background-position-x: right;
+    background-repeat: no-repeat;
+    padding-bottom: 3.125rem;
+}
+
+.features__content-feature.first {
+    background-image: url("../images/features_bg_1.svg");
+}
+
+.features__content-feature.second {
+    background-image: url("../images/features_bg_2.svg");
+}
+
+.features__content-feature.third {
+    background-image: url("../images/features_bg_3.svg");
+}
+
+.features__content-feature.fourth {
+    background-image: url("../images/features_bg_4.svg");
+}
+
+.features__content-feature-image {
+    margin-top: 4.5625rem;
+    width: 14.5rem;
+    height: fit-content;
+}
+
+.features__content-feature-info {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    align-self: center;
+}
+
+.features__content-feature-title {
+    font-family: Helvetica;
+    width: 12.5rem;
+    font-weight: 400;
+    font-size: 1.5rem;
+    line-height: 130%;
+    color: var(--text-primary-color);
+}
+
+.features__content-feature-description {
+    width: 13.75rem;
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 160%;
+    color: var(--text-secondary-color);
+}
+
+.features__content-feature-learn-more {
+    display: flex;
+    gap: 1.25rem;
+    width: fit-content;
+}
+
+.features__content-feature-learn-more-text {
+    font-weight: 800;
+    font-size: 1rem;
+    line-height: 160%;
+    letter-spacing: 0.005rem;
+    color: var(--text-primary-color);
+}
+
+.features__content-feature-learn-more-arrow {
+    margin-top: 0.3rem;
+}
