@@ -3,6 +3,7 @@
     align-items: center;
     display: flex;
     flex-direction: column;
+    z-index: -1;
 }
 
 .features__header {
@@ -49,7 +50,6 @@
     background-position-x: right;
     background-repeat: no-repeat;
     padding-bottom: 3.125rem;
-    z-index: -1;
 }
 
 .features__content-feature.first {
