@@ -6,6 +6,14 @@
     background: var(--bg-secondary-color);
     background-attachment: fixed;
     border-radius: 3.125rem;
+    opacity: 0;
+    transition: opacity .4s .25s ease-out;
+    will-change: opacity;
+    z-index: -1;
+}
+
+.about.is-visible {
+    opacity: 1;
 }
 
 .about__image {

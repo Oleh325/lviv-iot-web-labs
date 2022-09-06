@@ -40,6 +40,8 @@
 }
 
 .header__logo {
+    height: 2.1875rem;
+    width: 3.0625rem;
     display: flex;
     align-items: flex-end;
 }
@@ -50,6 +52,7 @@
     margin-right: 0.5625rem;
     background: var(--primary-color);
     border-radius: 1.25rem;
+    animation: logo-anim-left 6s ease-in-out infinite;
 }
 
 .header__logo-rectangle-big {
@@ -57,6 +60,7 @@
     height: 2.1875rem;
     background: var(--secondary-color);
     border-radius: 1.25rem;
+    animation: logo-anim-right 6s ease-in-out infinite;
 }
 
 .header__request-demo {
