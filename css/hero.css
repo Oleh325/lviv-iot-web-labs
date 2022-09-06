@@ -1,5 +1,5 @@
 .hero {
-    width: 80vw;
+    width: 80%;
     display: flex;
 }
 
@@ -11,7 +11,7 @@
 
 .hero__title {
     font-family: Helvetica;
-    width: 40.3125rem;
+    width: 100%;
     font-weight: 700;
     font-size: 5rem;
     line-height: 110%;
@@ -23,7 +23,7 @@
     font-weight: 500;
     font-size: 1.125rem;
     line-height: 160%;
-    width: 23.75rem;
+    width: 70%;
     color: var(--text-secondary-color);
 }
 
@@ -37,7 +37,46 @@
 
 .hero__image {
     width: 55rem;
-    height: auto;
-    margin-left: -18rem;
+    height: 30rem;
+    margin-left: -10rem;
     margin-top: 5rem;
+    z-index: -1;
+}
+
+@media screen and (max-width: 1375px) {
+
+    .hero {
+        flex-direction: column-reverse;
+    }
+
+    .hero__title {
+        width: auto;
+    }
+
+    .hero__image {
+        margin: 0 auto;
+    }
+
+}
+
+@media screen and (max-width: 1100px) {
+
+    .hero__content {
+        align-items: center;
+    }
+
+    .hero__title {
+        text-align: center;
+    }
+
+    .hero__image {
+        display: none;
+    }
+
+}
+
+@media screen and (max-width: 768px) {
+
+    
+
 }

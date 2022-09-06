@@ -1,5 +1,5 @@
 .features {
-    width: 80vw;
+    width: 80%;
     align-items: center;
     display: flex;
     flex-direction: column;
@@ -21,7 +21,7 @@
 }
 
 .features__description {
-    width: 36.5rem;
+    width: 60%;
     font-weight: 500;
     font-size: 1.125rem;
     line-height: 160%;
@@ -30,15 +30,20 @@
 }
 
 .features__content {
+    width: 100%;
     display: inline-block;
     margin-top: 6.25rem;
     column-count: 2;
     gap: 3.125rem;
 }
 
+.features__content > ul {
+    padding: 0;
+}
+
 .features__content-feature {
     display: flex;
-    width: 33.25rem;
+    width: 100%;
     height: 22.375rem;
     gap: 1.875rem;
     background-position-x: right;
@@ -77,7 +82,7 @@
 
 .features__content-feature-title {
     font-family: Helvetica;
-    width: 12.5rem;
+    width: 95%;
     font-weight: 400;
     font-size: 1.5rem;
     line-height: 130%;
@@ -85,7 +90,7 @@
 }
 
 .features__content-feature-description {
-    width: 13.75rem;
+    width: 95%;
     font-weight: 400;
     font-size: 1rem;
     line-height: 160%;
@@ -108,4 +113,80 @@
 
 .features__content-feature-learn-more-arrow {
     margin-top: 0.3rem;
+}
+
+@media screen and (max-width: 1100px) {
+
+    .features__content-feature-image {
+        width: 50%;
+    }
+
+    .features__content {
+        column-count: 1;
+    }
+
+    .features__content-feature {
+        width: 80%;
+        margin: 0 auto;
+    }
+
+}
+
+@media screen and (max-width: 768px) {
+
+    .features__content {
+        gap: 1.5rem;
+    }
+
+    .features__content-feature {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        margin-bottom: 2rem;
+        justify-content: center;
+        align-items: center;
+        padding: 0;
+    }
+
+    .features__content-feature.first {
+        background: var(--bg-green-color);
+        background-attachment: fixed;
+        border-radius: 3.125rem;
+    }
+    
+    .features__content-feature.second {
+        background: var(--bg-secondary-color);
+        background-attachment: fixed;
+        border-radius: 3.125rem;
+    }
+    
+    .features__content-feature.third {
+        background: var(--bg-primary-color);
+        background-attachment: fixed;
+        border-radius: 3.125rem;
+    }
+    
+    .features__content-feature.fourth {
+        background: var(--bg-blue-color);
+        background-attachment: fixed;
+        border-radius: 3.125rem;
+    }
+
+    .features__content-feature-title {
+        margin: 0 auto;
+    }
+
+    .features__content-feature-description {
+        margin: 0 auto;
+    }
+
+    .features__content-feature-image {
+        margin: 0;
+        width: 40%;
+    }
+
+    .features__content-feature-learn-more {
+        margin: 0 auto;
+    }
+
 }

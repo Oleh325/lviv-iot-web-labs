@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lab 1</title>
+    <title>Lab 2</title>
     <link rel="stylesheet" href="css/styles.css">
 </head>
 
@@ -12,11 +12,14 @@
     <div class="container">
         <header class="header">
             <div class="header__left-items">
+                <div class="header__menu" onclick="toggleMenu()">
+                    <img src="./images/menu_icon.svg" alt="Menu icon">
+                </div>
                 <div class="header__logo">
                     <div class="header__logo-rectangle-small"></div>
                     <div class="header__logo-rectangle-big"></div>
                 </div>
-                <nav class="header__nav">
+                <nav id = "nav-links" class="header__nav">
                     <ul>
                         <li class="header__nav-item selected"><a href="">About</a></li>
                         <li class="header__nav-item"><a href="">Help</a></li>
@@ -160,9 +163,14 @@
                         <img src="./images/chat.svg" class="footer__chat-image"></img>
                     </button>
                 </div>
+                <p class="footer__copyrights-mobile">
+                    © Datawarehouse™, 2020. All rights reserved. Company Registration Number: 21479524.
+                </p>
             </div>
         </footer>
     </div>
+
+    <script src="./js/main.js"></script>
 </body>
 
 </html>
