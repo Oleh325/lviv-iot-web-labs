@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lab 1</title>
+    <title>Lab 2</title>
     <link rel="stylesheet" href="css/styles.css">
 </head>
 
@@ -12,11 +12,14 @@
     <div class="container">
         <header class="header">
             <div class="header__left-items">
+                <div class="header__menu" onclick="toggleMenu()">
+                    <img src="./images/menu_icon.svg" alt="Menu icon">
+                </div>
                 <div class="header__logo">
                     <div class="header__logo-rectangle-small"></div>
                     <div class="header__logo-rectangle-big"></div>
                 </div>
-                <nav class="header__nav">
+                <nav id = "nav-links" class="header__nav">
                     <ul>
                         <li class="header__nav-item selected"><a href="">About</a></li>
                         <li class="header__nav-item"><a href="">Help</a></li>
@@ -46,7 +49,7 @@
             </div>
             <img src="./images/hero_image.png" class="hero__image"></img>
         </section>
-        <section class="about">
+        <section class="about show-on-scroll">
             <img src="./images/about_image.png" class="about__image"></img>
             <div class="about__content">
                 <h2 class="about__title">
@@ -69,7 +72,7 @@
             </div>
             <div class="features__content">
                 <ul>
-                    <li class="features__content-feature first">
+                    <li class="features__content-feature first show-on-scroll">
                         <img src="./images/features_image_1.png" class="features__content-feature-image"></img>
                         <div class="features__content-feature-info">
                             <h3 class="features__content-feature-title">
@@ -84,7 +87,7 @@
                             </button>
                         </div>
                     </li>
-                    <li class="features__content-feature second">
+                    <li class="features__content-feature second show-on-scroll">
                         <img src="./images/features_image_2.png" class="features__content-feature-image"></img>
                         <div class="features__content-feature-info">
                             <h3 class="features__content-feature-title">
@@ -99,7 +102,7 @@
                             </button>
                         </div>
                     </li>
-                    <li class="features__content-feature third">
+                    <li class="features__content-feature third show-on-scroll">
                         <img src="./images/features_image_3.png" class="features__content-feature-image"></img>
                         <div class="features__content-feature-info">
                             <h3 class="features__content-feature-title">
@@ -114,7 +117,7 @@
                             </button>
                         </div>
                     </li>
-                    <li class="features__content-feature fourth">
+                    <li class="features__content-feature fourth show-on-scroll">
                         <img src="./images/features_image_4.png" class="features__content-feature-image"></img>
                         <div class="features__content-feature-info">
                             <h3 class="features__content-feature-title">
@@ -160,9 +163,14 @@
                         <img src="./images/chat.svg" class="footer__chat-image"></img>
                     </button>
                 </div>
+                <p class="footer__copyrights-mobile">
+                    © Datawarehouse™, 2020. All rights reserved. Company Registration Number: 21479524.
+                </p>
             </div>
         </footer>
     </div>
+
+    <script src="./js/main.js"></script>
 </body>
 
 </html>
