@@ -136,6 +136,10 @@ input:checked + .aside__sort-slider:before {
     border: 0.125rem solid darkgray;
 }
 
+.cats__cat-card.hidden {
+    display: none;
+}
+
 .cats__cat-card-content {
     display: flex;
     flex-direction: column;
