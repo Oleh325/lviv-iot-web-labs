@@ -43,7 +43,8 @@ Requirements:
 - Styling is not important at all. Is up to you.
 
 ## Lab 4:
-### 
+### CRUD Javascript App: Create/Edit Pages
+
 Description: In this work, you need to continue working and add two new parts to your website - Create & Edit Pages (You can find the template of these pages by following the link)
 
 _Update/Delete operations are not required for this work!_
@@ -57,3 +58,12 @@ Bonus points are provided for this work, if you implement a styled modal window 
 Requirements:
 - Responsiveness absolutely not required.
 - Styling is not important at all. Is up to you.
+
+## Lab 5:
+### CRUD Javascript App: Backend
+
+Description: In the last part of working on the website you have to implement all Create/Read/Update/Delete operations which must be made via the corresponding HTTP methods in your REST API.
+
+Important. You don't have to make a backend from the beginning - connect an existing one that you worked on in the first year.
+
+**If you don’t have a backend server, you should create a new REST API using any preferred technology.**
