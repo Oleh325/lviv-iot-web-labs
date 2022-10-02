@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lab 3</title>
+    <title>Lab 5</title>
     <link rel="stylesheet" href="css/styles.css">
-    <script type="module" src="./js/index.js"></script>
+    <script type="module" src="../js/index.js"></script>
 </head>
 
 <body>
@@ -16,8 +16,8 @@
                 <div class="header__title">Cats!</div>
                 <nav class="header__nav">
                     <ul>
-                        <li class="header__nav-item selected"><button class="mycats_button">My Cats</button></li>
-                        <li class="header__nav-item"><button class="createcat_button">Create Cat</button></li>
+                        <li class="header__nav-item selected"><a href="/cats">My Cats</a></li>
+                        <li class="header__nav-item"><a href="/cats/create">Create Cat</a></li>
                     </ul>
                 </nav>
             </div>
@@ -51,42 +51,9 @@
             </aside>
             <div class="cats">
                 <ul id="items_container">
+                    {{{body}}}
                 </ul>
             </div>
-        </main>
-    </div>
-    <div class="container__create hidden" id="createcat">
-        <header class="header">
-            <div class="header__left">
-                <div class="header__title">Cats!</div>
-                <nav class="header__nav">
-                    <ul>
-                        <li class="header__nav-item selected"><button class="mycats_button">My Cats</button></li>
-                        <li class="header__nav-item"><button class="createcat_button">Create Cat</button></li>
-                    </ul>
-                </nav>
-            </div>
-        </header>
-        <main class="create__main">
-            <div class="create__main-title">Create cat</div>
-            <div class="create__inputs">
-                <div class="create__title">
-                    <div class="create__input-text">Title</div>
-                    <input type="text" class="create__input-title" placeholder="Text..." id="title_input">
-                </div>
-                <div class="create__description">
-                    <div class="create__input-text">Description</div>
-                    <textarea type="text" class="create__input-description" id="description_input"></textarea>
-                </div>
-                <div class="create__cuteness">
-                    <div class="create__input-text">Cuteness</div>
-                    <div class="slidecontainer">
-                        <input type="range" min="0" max="100" value="69" class="create__input-cuteness" id="cuteness_input">
-                        <div class="slidertext" id="cuteness_percentage">69%</div>
-                    </div>
-                </div>
-            </div>
-            <button class="create__submit btn-blue" id="submit_button" type="submit">Submit</button>
         </main>
     </div>
 </body>

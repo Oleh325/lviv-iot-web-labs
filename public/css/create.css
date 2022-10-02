@@ -1,13 +1,25 @@
-.create__main {
+.container__create {
+    height: 100vh;
     display: flex;
-    gap: 2rem;
     flex-direction: column;
-    align-items: center;
+    justify-content: space-between;
+}
+
+.create__main {
+    height: 80%;
 }
 
 .create__main-title {
     font-weight: 600;
     font-size: 3rem;
+}
+
+.create__form {
+    width: 100%;
+    display: flex;
+    gap: 2rem;
+    flex-direction: column;
+    align-items: center;
 }
 
 .create__inputs {
@@ -19,6 +31,11 @@
 
 .create__input-text {
     color: rgb(32, 32, 32);
+}
+
+.create__input-title-error {
+    color:rgb(244, 0, 0);
+    font-size: 0.8rem;
 }
 
 .create__title {
