@@ -6,39 +6,8 @@ export const HomeContainer = styled.div`
     flex-direction: column;
     align-items: center;
     gap: 13rem;
-    .heading {
-        width: 90%;
-        display: flex;
-        gap: 3rem;
-    }
-    .text-content {
-        display: flex;
-        flex-direction: column;
-        gap: 2rem;
-    }
-    .text-content-title {
-        font-weight: 600;
-        font-size: 3rem;
-        color: #333333;
-    }
-    .text-content-description {
-        font-size: 1.5rem;
-        color: #444444;
-    }
     img {
         width: 40%;
-    }
-    .content-cats {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 4rem;
-    }
-    .tiles {
-        width: 90%;
-        display: flex;
-        gap: 8rem;
-        justify-content: space-between;
     }
     button {
         height: 4rem;
@@ -51,4 +20,41 @@ export const HomeContainer = styled.div`
         font-size: 1.5rem;
         cursor: pointer; 
     }
+`
+
+export const Heading = styled.section`
+    width: 90%;
+    display: flex;
+    gap: 3rem;
+`
+
+export const TextContent = styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+`
+
+export const Title = styled.div`
+    font-weight: 600;
+    font-size: 3rem;
+    color: #333333;
+`
+
+export const Description = styled.div`
+    font-size: 1.5rem;
+    color: #444444;
+`
+
+export const ContentCats = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4rem;
+`
+
+export const Tiles = styled.section`
+    width: 90%;
+    display: flex;
+    gap: 8rem;
+    justify-content: space-between;
 `
