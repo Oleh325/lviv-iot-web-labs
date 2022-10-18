@@ -11,4 +11,7 @@ export const HeaderContainer = styled.div`
         padding-left: 2rem;
         justify-self: left;
     }
+    .hidden {
+        opacity: 0;
+    }
 `;

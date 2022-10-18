@@ -1,26 +1,17 @@
 import React from "react";
+import NavElement from "./NavElement";
 import { NavContainer } from "./Navigation.styled";
 
-const Navigation = () => (
-    <NavContainer>
-        <ul>
-            <li>
-                <div className="selected">
-                    <a href="/">Home</a>
-                </div>
-            </li>
-            <li>
-                <div>
-                    <a href="/">Catalog</a>
-                </div>
-            </li>
-            <li>
-                <div>
-                    <a href="/">Cart</a>
-                </div>
-            </li>
-        </ul>
-      </NavContainer>
-);
+const Navigation = () => {
+    return(
+        <NavContainer>
+            <ul>
+                <NavElement link="/" text="Home" />
+                <NavElement link="/catalog" text="Catalog" />
+                <NavElement link="/cart" text="Cart" />
+            </ul>
+        </NavContainer>
+    );
+}
 
 export default Navigation;
