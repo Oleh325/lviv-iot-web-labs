@@ -43,13 +43,21 @@ export const CatalogItemContainer = styled.div`
         color: #333333;
         font-weight: 600;
     }
-    button {
+    .link {
         color: white;
         background-color: #424242;
-        font-size: 1rem;
         border: none;
+        text-decoration: none;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         border-radius: 0.75rem;
         width: 40%;
         height: 8%;
+        cursor: pointer;
+        .text {
+            font-size: 1rem;
+            text-align: center;
+        }
     }
 `

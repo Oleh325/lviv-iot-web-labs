@@ -11,31 +11,9 @@ import CatalogItem from "./CatalogItem/CatalogItem";
 import { FiltersBorder, Filters } from "./Catalog.styled";
 import { useState } from "react";
 
-const cats = [
-    {title: "Amazing stuff",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc maximus, nulla ut commodo sagittis, sapien dui",
-    price: "2415",
-    imagesrc: "https://cataas.com/cat"},
-    {title: "Amazing stuff",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc maximus, nulla ut commodo sagittis, sapien dui",
-    price: "2415",
-    imagesrc: "https://cataas.com/cat"},
-    {title: "Amazing stuff",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc maximus, nulla ut commodo sagittis, sapien dui",
-    price: "6969",
-    imagesrc: "https://cataas.com/cat"},
-    {title: "Amazing stuff",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc maximus, nulla ut commodo sagittis, sapien dui",
-    price: "2415",
-    imagesrc: "https://cataas.com/cat"},
-    {title: "Amazing stuff",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc maximus, nulla ut commodo sagittis, sapien dui",
-    price: "priceless",
-    imagesrc: "https://cataas.com/cat"}
-]
-
-const Catalog = () => {
+const Catalog = ( { catsArray } ) => {
     const [isFiltersOn, setIsFiltersOn] = useState(false);
+    const [cats, setCats] = useState(catsArray);
 
     return(
         <CatalogContainer>
@@ -53,7 +31,7 @@ const Catalog = () => {
             <FiltersBorder />
             <ItemsContainer>
                 {cats.map(cat => {
-                    return <CatalogItem imagesrc={cat.imagesrc} title={cat.title} description={cat.description} price={cat.price} />
+                    return <CatalogItem imagesrc={cat.imagesrc} title={cat.title} description={cat.description} price={cat.price} id={cat.id} />
                 })}
             </ItemsContainer>
         </CatalogContainer>

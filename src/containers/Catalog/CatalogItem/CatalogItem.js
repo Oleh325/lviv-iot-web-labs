@@ -1,7 +1,8 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { CatalogItemContainer } from "./CatalogItem.styled";
 
-const CatalogItem = ( { title, description, price, imagesrc } ) => {
+const CatalogItem = ( { title, description, price, imagesrc, id } ) => {
     return (
         <CatalogItemContainer>
             <img src={imagesrc} alt="cat"></img>
@@ -13,7 +14,7 @@ const CatalogItem = ( { title, description, price, imagesrc } ) => {
                     <div className="price">${price}</div>
                 </div>
             </div>
-            <button>View more</button>
+            <Link to={"/item/" + id} className="link"><div className="text">View more</div></Link>
         </CatalogItemContainer>
     );
 }

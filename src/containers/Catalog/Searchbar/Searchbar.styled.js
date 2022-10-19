@@ -26,6 +26,7 @@ export const SearchbarContainer = styled.div`
         font-size: 1.5rem;
         background: none;
         border: none;
+        width: 100%;
         :focus {
             outline: none;
         }
