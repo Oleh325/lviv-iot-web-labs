@@ -1,10 +1,10 @@
 import React from "react";
 import Header from "./Header/Header";
 import Home from "../Home/Home";
-import Catalog from "../Catalog/Catalog";
 import Cart from "../Cart/Cart";
 import Footer from "./Footer/Footer";
 import Item from "../Item/Item";
+import CatalogHandler from "../Catalog/CatalogHandler";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 const catsArray = [
@@ -52,10 +52,7 @@ const App = () => {
           </>
           } />
           <Route exact path="/catalog" element={
-          <>
-            <Header />
-            <Catalog catsArray={catsArray} />
-          </>
+          <CatalogHandler catsArray={catsArray} />
           } />            
           <Route exact path="/cart" element={
           <>

@@ -12,7 +12,7 @@ const Item = ( { catsArray } ) => {
     const id = useParams().id;
     let cat;
     catsArray.forEach(element => {
-        if (element.id == id) {
+        if (element.id.toString() === id.toString()) {
             cat = element;
         }
     });

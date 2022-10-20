@@ -1,14 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import search_icon from "../../../images/search_icon.png";
 import { SearchbarContainer } from "./Searchbar.styled";
 
-const Searchbar = ( { hiddenClassName } ) => {
+const Searchbar = ( { hiddenClassName, onSearch } ) => {
+    const [input, setInput] = useState("");
+
+
     return (
         <SearchbarContainer className={hiddenClassName}>
             <button>
-                <img src={search_icon} alt={"search_icon"}></img>
+                <img src={search_icon} alt={"search_icon"} onClick={() => onSearch(input)}></img>
             </button>
-            <input></input>
+            <input onKeyDown={(e) => {if (e.key === "Enter") { onSearch(input); }}} value={input} onInput={e => setInput(e.target.value)}></input>
         </SearchbarContainer>
     );
 }

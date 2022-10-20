@@ -64,4 +64,7 @@ export const ItemsContainer = styled.div`
     gap: 4.6rem;
     row-gap: 2rem;
     flex-wrap: wrap;
+    .hidden {
+        display: none;
+    }
 `
