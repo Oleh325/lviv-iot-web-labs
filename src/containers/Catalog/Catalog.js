@@ -37,6 +37,68 @@ const Catalog = ( { catsArray, input } ) => {
             } else {
                 cat.hidden = "hidden";
             }
+            if (color !== "all" && cat.color !== color) {
+                cat.hidden = "hidden";
+            }
+            else if (cuteness !== "all") {
+                switch (cuteness) {
+                    case "0to25":
+                        if (cat.cuteness > 25) {
+                            cat.hidden = "hidden";
+                        }
+                        break;
+                    case "26to50":
+                        if (cat.cuteness <= 25 || cat.cuteness > 50) {
+                            cat.hidden = "hidden";
+                        }
+                        break;
+                    case "51to75":
+                        if (cat.cuteness <= 50 || cat.cuteness > 75) {
+                            cat.hidden = "hidden";
+                        }
+                        break;
+                    case "76to100":
+                        if (cat.cuteness <= 75 || cat.cuteness > 100) {
+                            cat.hidden = "hidden";
+                        }
+                        break;
+                    default:
+                        cat.hidden = "";
+                        break;
+                }
+            }
+            else if (weight !== "all") {
+                switch (weight) {
+                    case "2to4":
+                        if (cat.weight < 2 || cat.weight >= 4) {
+                            cat.hidden = "hidden";
+                        }
+                        break;
+                    case "4to6":
+                        if (cat.weight < 4 || cat.weight >= 6) {
+                            cat.hidden = "hidden";
+                        }
+                        break;
+                    case "6to8":
+                        if (cat.weight < 6 || cat.weight >= 8) {
+                            cat.hidden = "hidden";
+                        }
+                        break;
+                    case "8to10":
+                        if (cat.weight < 8 || cat.weight >= 10) {
+                            cat.hidden = "hidden";
+                        }
+                        break;
+                    case "10plus":
+                        if (cat.weight < 10) {
+                            cat.hidden = "hidden";
+                        }
+                        break;
+                    default:
+                        cat.hidden = "";
+                        break;
+                }
+            }
             return cat;
         }));
     }, [input]);
@@ -125,6 +187,9 @@ const Catalog = ( { catsArray, input } ) => {
             }
             else {
                 cat.hidden = "";
+            }
+            if (cat.title.search(input) === -1 && input !== "") {
+                cat.hidden = "hidden";
             }
             return cat;
         }));
