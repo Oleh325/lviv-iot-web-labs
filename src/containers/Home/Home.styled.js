@@ -57,4 +57,8 @@ export const Tiles = styled.section`
     display: flex;
     gap: 8rem;
     justify-content: space-between;
+    flex-wrap: wrap;
+    .hidden {
+        display: none;
+    }
 `

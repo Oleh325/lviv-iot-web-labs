@@ -59,5 +59,8 @@ export const CatalogItemContainer = styled.div`
             font-size: 1rem;
             text-align: center;
         }
+        .hidden {
+            display: none;
+        }
     }
 `

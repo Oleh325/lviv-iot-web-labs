@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { FilterContainer } from "./Filters.styled";
 
-const ColorFilter = ( { hiddenClassName } ) => {
+const ColorFilter = ( { hiddenClassName, isActive } ) => {
     const [color, setColor] = useState("all");
 
     return(

@@ -2,9 +2,9 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { CatalogItemContainer } from "./CatalogItem.styled";
 
-const CatalogItem = ( { title, description, price, imagesrc, id } ) => {
+const CatalogItem = ( { title, description, price, imagesrc, id, hiddenClassName } ) => {
     return (
-        <CatalogItemContainer>
+        <CatalogItemContainer className={hiddenClassName}>
             <img src={imagesrc} alt="cat"></img>
             <div className="text-contents">
                 <div className="title">{title}</div>

@@ -15,6 +15,10 @@ const Catalog = ( { catsArray } ) => {
     const [isFiltersOn, setIsFiltersOn] = useState(false);
     const [cats, setCats] = useState(catsArray);
 
+    const applyFilters = () => {
+        
+    }
+
     return(
         <CatalogContainer>
             <FiltersContainer>
@@ -26,12 +30,12 @@ const Catalog = ( { catsArray } ) => {
                     <CutenessFilter hiddenClassName={isFiltersOn ? "" : "hidden"} />
                     <WeightFilter hiddenClassName={isFiltersOn ? "" : "hidden"} />
                 </Filters>
-                <button>Apply</button>
+                <button onClick={() => applyFilters()}>Apply</button>
             </FiltersContainer>
             <FiltersBorder />
             <ItemsContainer>
                 {cats.map(cat => {
-                    return <CatalogItem imagesrc={cat.imagesrc} title={cat.title} description={cat.description} price={cat.price} id={cat.id} />
+                    return <CatalogItem imagesrc={cat.imagesrc} title={cat.title} description={cat.description} price={cat.price} id={cat.id} key={cat.id} hiddenClassName={cat.hidden} />
                 })}
             </ItemsContainer>
         </CatalogContainer>
