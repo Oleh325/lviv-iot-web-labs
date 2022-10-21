@@ -8,23 +8,19 @@ import { useParams } from "react-router-dom";
 
 const Item = ( { catsArray } ) => {
     const [selectedOption, setSelectedOption] = useState("");
-    const [options, setOptions] = useState([]);
-
+    const [cat, setCat] = useState({});
+    
     const id = useParams().id;
-    let cat;
-    catsArray.forEach(element => {
-        if (element.id.toString() === id.toString()) {
-            cat = element;
-        }
-    });
-    const title = cat.title;
-    const description = cat.description;
-    setOptions(cat.options);
-    const cuteness = cat.cuteness;
-    const weight = cat.weight;
-    const color = cat.color;
-    const price = cat.price;
-    useEffect(() => setSelectedOption(options[0]), [options]);
+
+    useEffect(() => {
+        catsArray.forEach(element => {
+            if (element.id.toString() === id.toString()) {
+                setCat(element);
+            }
+        });
+    }, [catsArray, id]);
+
+    useEffect(() => setSelectedOption(cat.options ? cat.options[0] : ""), [cat]);
     
     return(
         <ItemContainer>
@@ -32,24 +28,24 @@ const Item = ( { catsArray } ) => {
                 <img src="https://cataas.com/cat" alt=""></img>
                 <div className="content-specs">
                     <div className="options">
-                        {options.map(option => {
+                        {cat.options?.map(option => {
                             const className = option === selectedOption ? "option selected" : "option";
                             return <button className={className} key={option} onClick={() => setSelectedOption(option)}>{option}</button>
                         })}
                     </div>
                     <div className="text-content">
-                        <div className="title">{title}</div>
-                        <div className="description">{description}</div>
+                        <div className="title">{cat.title}</div>
+                        <div className="description">{cat.description}</div>
                     </div>
                     <div className="specs">
-                        <div>Cuteness: {cuteness}%</div>
-                        <div>Weight: {weight}kg</div>
-                        <div>Color: {color}</div>
+                        <div>Cuteness: {cat.cuteness}%</div>
+                        <div>Weight: {cat.weight}kg</div>
+                        <div>Color: {cat.color}</div>
                     </div>
                 </div>
             </ItemContent>
             <ItemFooter>
-                <div className="price">Price: {price}$</div>
+                <div className="price">Price: {cat.price}$</div>
                 <div className="buttons">
                     <Link to="/catalog" className="back-button"><div>Go back</div></Link>
                     <button className="addtocart-button">Add to cart</button>
