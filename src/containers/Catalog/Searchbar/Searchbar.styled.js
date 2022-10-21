@@ -31,4 +31,7 @@ export const SearchbarContainer = styled.div`
             outline: none;
         }
     }
+    .hidden {
+        cursor: default;
+    }
 `

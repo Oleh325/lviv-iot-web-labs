@@ -37,7 +37,17 @@ const catsArray = [
     weight: 2.7,
     options: ["Cute", "Super cute"],
     imagesrc: "https://cataas.com/cat"
-  }
+  },
+  {id: 4,
+    title: "Cat 4",
+    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc maximus, nulla ut commodo sagittis, sapien dui",
+    price: "2400",
+    cuteness: 100,
+    color: "white",
+    weight: 5,
+    options: ["Nice", "Cute", "Super cute"],
+    imagesrc: "https://cataas.com/cat"
+    },
 ]
 
 const App = () => {

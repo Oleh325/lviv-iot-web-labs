@@ -8,10 +8,10 @@ const Searchbar = ( { hiddenClassName, onSearch } ) => {
 
     return (
         <SearchbarContainer className={hiddenClassName}>
-            <button>
+            <button className={hiddenClassName}>
                 <img src={search_icon} alt={"search_icon"} onClick={() => onSearch(input)}></img>
             </button>
-            <input onKeyDown={(e) => {if (e.key === "Enter") { onSearch(input); }}} value={input} onInput={e => setInput(e.target.value)}></input>
+            <input className={hiddenClassName} onKeyDown={(e) => {if (e.key === "Enter") { onSearch(input); }}} value={input} onInput={e => setInput(e.target.value)}></input>
         </SearchbarContainer>
     );
 }

@@ -8,7 +8,8 @@ import { useParams } from "react-router-dom";
 
 const Item = ( { catsArray } ) => {
     const [selectedOption, setSelectedOption] = useState("");
-    
+    const [options, setOptions] = useState([]);
+
     const id = useParams().id;
     let cat;
     catsArray.forEach(element => {
@@ -18,12 +19,12 @@ const Item = ( { catsArray } ) => {
     });
     const title = cat.title;
     const description = cat.description;
-    const options = cat.options;
+    setOptions(cat.options);
     const cuteness = cat.cuteness;
     const weight = cat.weight;
     const color = cat.color;
     const price = cat.price;
-    useEffect(() => setSelectedOption(options[0]), []);
+    useEffect(() => setSelectedOption(options[0]), [options]);
     
     return(
         <ItemContainer>
