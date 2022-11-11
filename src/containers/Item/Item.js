@@ -15,9 +15,8 @@ const Item = () => {
 
     useEffect(() => {
         const getCatAsync = async (id) => {
-            setCat(await getCatById(id).then(() => {
-                
-            }));
+            const fetchedCat = await getCatById(id);
+            setCat(fetchedCat == null ? {} : fetchedCat);
         } 
         getCatAsync(id);
     }, [id]);

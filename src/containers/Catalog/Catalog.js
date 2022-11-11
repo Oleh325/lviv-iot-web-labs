@@ -35,8 +35,9 @@ const Catalog = ( { catsArray = [], input } ) => {
     useEffect(() => {
         setLoaderHidden("");
         const getCatsAsync = async () => {
-            await new Promise(r => setTimeout(r, 2000));
-            setCats(await getCats());
+            await new Promise(r => setTimeout(r, 1500));
+            const fetchedCats = await getCats();
+            setCats(fetchedCats == null ? [] : fetchedCats);
             setLoaderHidden("hidden");
         }
         getCatsAsync();
@@ -56,7 +57,8 @@ const Catalog = ( { catsArray = [], input } ) => {
 
     const applyFilters = () => {
         const getCatsWithFiltersAsync = async (cuteness, color, weight) => {
-            setCats(await getCatsWithFilters(cuteness, color, weight));
+            const fetchedCats = await getCatsWithFilters(cuteness, color, weight);
+            setCats(fetchedCats == null ? [] : fetchedCats);
         } 
         getCatsWithFiltersAsync(cuteness, color, weight);
         setCats(cats.map(cat => {
