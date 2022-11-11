@@ -18,6 +18,7 @@ const Catalog = ( { catsArray = [], input } ) => {
     const [color, setColor] = useState("all");
     const [cuteness, setCuteness] = useState("all");
     const [weight, setWeight] = useState("all");
+    const [loaderHidden, setLoaderHidden] = useState("");
 
     const onColorChange = (color) => {
         setColor(color);
@@ -32,9 +33,12 @@ const Catalog = ( { catsArray = [], input } ) => {
     }
 
     useEffect(() => {
+        setLoaderHidden("");
         const getCatsAsync = async () => {
+            await new Promise(r => setTimeout(r, 2000));
             setCats(await getCats());
-        } 
+            setLoaderHidden("hidden");
+        }
         getCatsAsync();
     }, []);
 
@@ -78,6 +82,7 @@ const Catalog = ( { catsArray = [], input } ) => {
             </FiltersContainer>
             <FiltersBorder />
             <ItemsContainer>
+                <div className={"loader " + loaderHidden} />
                 {cats.map(cat => {
                     return <CatalogItem imagesrc={cat.imagesrc} title={cat.title} description={cat.description} price={cat.price} id={cat.id} key={cat.id} hiddenClassName={cat.hidden ? cat.hidden : ""} />
                 })}
