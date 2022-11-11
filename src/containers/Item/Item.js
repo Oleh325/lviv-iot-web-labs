@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { getCatById } from "../../Requests";
 import { ItemContainer,
         ItemContent,
         ItemFooter }
@@ -6,26 +7,25 @@ import { ItemContainer,
 import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
 
-const Item = ( { catsArray } ) => {
+const Item = () => {
     const [selectedOption, setSelectedOption] = useState("");
     const [cat, setCat] = useState({});
     
     const id = useParams().id;
 
     useEffect(() => {
-        catsArray.forEach(element => {
-            if (element.id.toString() === id.toString()) {
-                setCat(element);
-            }
-        });
-    }, [catsArray, id]);
+        const getCatAsync = async (id) => {
+            setCat(await getCatById(id));
+        } 
+        getCatAsync(id);
+    }, [id]);
 
     useEffect(() => setSelectedOption(cat.options ? cat.options[0] : ""), [cat]);
     
     return(
         <ItemContainer>
             <ItemContent>
-                <img src="https://cataas.com/cat" alt=""></img>
+                <img src={cat.imagesrc} alt=""></img>
                 <div className="content-specs">
                     <div className="options">
                         {cat.options?.map(option => {
