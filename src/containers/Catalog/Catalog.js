@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { getCats, getCatsWithFilters } from "../../Requests";
 import {
     CatalogContainer,
     FiltersContainer,
@@ -11,12 +12,13 @@ import CatalogItem from "./CatalogItem/CatalogItem";
 import { FiltersBorder, Filters } from "./Catalog.styled";
 import { useState } from "react";
 
-const Catalog = ( { catsArray, input } ) => {
+const Catalog = ( { catsArray = [], input } ) => {
     const [isFiltersOn, setIsFiltersOn] = useState(false);
-    const [cats, setCats] = useState(catsArray);
+    const [cats, setCats] = useState([]);
     const [color, setColor] = useState("all");
     const [cuteness, setCuteness] = useState("all");
     const [weight, setWeight] = useState("all");
+    const [loaderHidden, setLoaderHidden] = useState("");
 
     const onColorChange = (color) => {
         setColor(color);
@@ -31,176 +33,41 @@ const Catalog = ( { catsArray, input } ) => {
     }
 
     useEffect(() => {
+        setLoaderHidden("");
+        const getCatsAsync = async () => {
+            await new Promise(r => setTimeout(r, 1500));
+            const fetchedCats = await getCats();
+            setCats(fetchedCats == null ? [] : fetchedCats);
+            setLoaderHidden("hidden");
+        }
+        getCatsAsync();
+    }, []);
+
+    useEffect(() => {
         setCats(cats.map(cat => {
             if (cat.title.search(input) !== -1 || input === "") {
                 cat.hidden = "";
             } else {
                 cat.hidden = "hidden";
             }
-            if (color !== "all" && cat.color !== color) {
-                cat.hidden = "hidden";
-            }
-            else if (cuteness !== "all") {
-                switch (cuteness) {
-                    case "0to25":
-                        if (cat.cuteness > 25) {
-                            cat.hidden = "hidden";
-                        }
-                        break;
-                    case "26to50":
-                        if (cat.cuteness <= 25 || cat.cuteness > 50) {
-                            cat.hidden = "hidden";
-                        }
-                        break;
-                    case "51to75":
-                        if (cat.cuteness <= 50 || cat.cuteness > 75) {
-                            cat.hidden = "hidden";
-                        }
-                        break;
-                    case "76to100":
-                        if (cat.cuteness <= 75 || cat.cuteness > 100) {
-                            cat.hidden = "hidden";
-                        }
-                        break;
-                    default:
-                        cat.hidden = "";
-                        break;
-                }
-            }
-            else if (weight !== "all") {
-                switch (weight) {
-                    case "2to4":
-                        if (cat.weight < 2 || cat.weight >= 4) {
-                            cat.hidden = "hidden";
-                        }
-                        break;
-                    case "4to6":
-                        if (cat.weight < 4 || cat.weight >= 6) {
-                            cat.hidden = "hidden";
-                        }
-                        break;
-                    case "6to8":
-                        if (cat.weight < 6 || cat.weight >= 8) {
-                            cat.hidden = "hidden";
-                        }
-                        break;
-                    case "8to10":
-                        if (cat.weight < 8 || cat.weight >= 10) {
-                            cat.hidden = "hidden";
-                        }
-                        break;
-                    case "10plus":
-                        if (cat.weight < 10) {
-                            cat.hidden = "hidden";
-                        }
-                        break;
-                    default:
-                        cat.hidden = "";
-                        break;
-                }
-            }
             return cat;
         }));
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [input]);
 
     const applyFilters = () => {
+        const getCatsWithFiltersAsync = async (cuteness, color, weight) => {
+            const fetchedCats = await getCatsWithFilters(cuteness, color, weight);
+            setCats(fetchedCats == null ? [] : fetchedCats);
+        } 
+        getCatsWithFiltersAsync(cuteness, color, weight);
         setCats(cats.map(cat => {
-            if (color !== "all" && cat.color !== color) {
-                cat.hidden = "hidden";
-            }
-            else if (cuteness !== "all") {
-                switch (cuteness) {
-                    case "0to25":
-                        if (cat.cuteness > 25) {
-                            cat.hidden = "hidden";
-                        } else {
-                            cat.hidden = "";
-                        }
-                        break;
-                    case "26to50":
-                        if (cat.cuteness <= 25 || cat.cuteness > 50) {
-                            cat.hidden = "hidden";
-                        } else {
-                            cat.hidden = "";
-                        }
-                        break;
-                    case "51to75":
-                        if (cat.cuteness <= 50 || cat.cuteness > 75) {
-                            cat.hidden = "hidden";
-                        } else {
-                            cat.hidden = "";
-                        }
-                        break;
-                    case "76to100":
-                        if (cat.cuteness <= 75 || cat.cuteness > 100) {
-                            cat.hidden = "hidden";
-                        } else {
-                            cat.hidden = "";
-                        }
-                        break;
-                    default:
-                        cat.hidden = "";
-                        break;
-                }
-            }
-            else if (weight !== "all") {
-                switch (weight) {
-                    case "2to4":
-                        if (cat.weight < 2 || cat.weight >= 4) {
-                            cat.hidden = "hidden";
-                        } else {
-                            cat.hidden = "";
-                        }
-                        break;
-                    case "4to6":
-                        if (cat.weight < 4 || cat.weight >= 6) {
-                            cat.hidden = "hidden";
-                        } else {
-                            cat.hidden = "";
-                        }
-                        break;
-                    case "6to8":
-                        if (cat.weight < 6 || cat.weight >= 8) {
-                            cat.hidden = "hidden";
-                        } else {
-                            cat.hidden = "";
-                        }
-                        break;
-                    case "8to10":
-                        if (cat.weight < 8 || cat.weight >= 10) {
-                            cat.hidden = "hidden";
-                        } else {
-                            cat.hidden = "";
-                        }
-                        break;
-                    case "10plus":
-                        if (cat.weight < 10) {
-                            cat.hidden = "hidden";
-                        } else {
-                            cat.hidden = "";
-                        }
-                        break;
-                    default:
-                        cat.hidden = "";
-                        break;
-                }
-            }
-            else {
-                cat.hidden = "";
-            }
             if (cat.title.search(input) === -1 && input !== "") {
                 cat.hidden = "hidden";
             }
             return cat;
         }));
     }
-
-    useEffect(() => {
-        setCats(catsArray.map(cat => {
-            cat.hidden = "";
-            return cat;
-        }));
-    }, []);
 
     return(
         <CatalogContainer>
@@ -217,6 +84,7 @@ const Catalog = ( { catsArray, input } ) => {
             </FiltersContainer>
             <FiltersBorder />
             <ItemsContainer>
+                <div className={"loader " + loaderHidden} />
                 {cats.map(cat => {
                     return <CatalogItem imagesrc={cat.imagesrc} title={cat.title} description={cat.description} price={cat.price} id={cat.id} key={cat.id} hiddenClassName={cat.hidden ? cat.hidden : ""} />
                 })}

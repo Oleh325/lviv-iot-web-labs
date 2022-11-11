@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Header from "../App/Header/Header";
 import Catalog from "./Catalog";
 
-const CatalogHandler = ( { catsArray } ) => {
+const CatalogHandler = () => {
     const [input, setInput] = useState();
 
     const updateInput = (input) => {
@@ -12,7 +12,7 @@ const CatalogHandler = ( { catsArray } ) => {
     return(
         <>
             <Header onInputSubmit={updateInput} />
-            <Catalog catsArray={catsArray} input={input} />
+            <Catalog input={input} />
         </>
     );
 }
