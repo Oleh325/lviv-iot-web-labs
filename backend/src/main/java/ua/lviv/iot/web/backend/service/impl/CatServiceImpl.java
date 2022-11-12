@@ -9,7 +9,6 @@ import ua.lviv.iot.web.backend.service.CatService;
 
 import javax.transaction.Transactional;
 import java.util.HashSet;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 

@@ -12,7 +12,7 @@ import CatalogItem from "./CatalogItem/CatalogItem";
 import { FiltersBorder, Filters } from "./Catalog.styled";
 import { useState } from "react";
 
-const Catalog = ( { catsArray = [], input } ) => {
+const Catalog = ( { input } ) => {
     const [isFiltersOn, setIsFiltersOn] = useState(false);
     const [cats, setCats] = useState([]);
     const [color, setColor] = useState("all");
@@ -45,7 +45,7 @@ const Catalog = ( { catsArray = [], input } ) => {
 
     useEffect(() => {
         setCats(cats.map(cat => {
-            if (cat.title.search(input) !== -1 || input === "") {
+            if (cat.title.search(input) !== -1 || input === "" || input === null) {
                 cat.hidden = "";
             } else {
                 cat.hidden = "hidden";
@@ -55,18 +55,20 @@ const Catalog = ( { catsArray = [], input } ) => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [input]);
 
-    const applyFilters = () => {
-        const getCatsWithFiltersAsync = async (cuteness, color, weight) => {
-            const fetchedCats = await getCatsWithFilters(cuteness, color, weight);
-            setCats(fetchedCats == null ? [] : fetchedCats);
-        } 
-        getCatsWithFiltersAsync(cuteness, color, weight);
-        setCats(cats.map(cat => {
-            if (cat.title.search(input) === -1 && input !== "") {
+    const applyFilters = async () => {
+        setCats([]);
+        setLoaderHidden("");
+        await new Promise(r => setTimeout(r, 1500));
+        const fetchedCats = await getCatsWithFilters(cuteness, color, weight);
+        setCats(fetchedCats == null ? [] : fetchedCats.map(cat => {
+            if (cat.title.search(input) !== -1 || input === "" || input === null) {
+                cat.hidden = "";
+            } else {
                 cat.hidden = "hidden";
             }
             return cat;
         }));
+        setLoaderHidden("hidden");
     }
 
     return(
