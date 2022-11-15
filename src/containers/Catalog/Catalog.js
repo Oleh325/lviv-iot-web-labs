@@ -67,7 +67,7 @@ const Catalog = ( { input } ) => {
                 cat.hidden = "hidden";
             }
             return cat;
-        }));
+        }).sort((a, b) => a.id - b.id));
         setLoaderHidden("hidden");
     }
 
