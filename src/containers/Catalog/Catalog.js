@@ -14,9 +14,10 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { filtersActions } from "../../store/reducers";
 
-const Catalog = ( { input } ) => {
+const Catalog = () => {
     const [isFiltersOn, setIsFiltersOn] = useState(false);
     const [cats, setCats] = useState([]);
+    const input = useSelector((state) => state.search.input);
     const filtersList = useSelector((state) => state.filters.filtersList);
     const [loaderHidden, setLoaderHidden] = useState(false);
     const dispatch = useDispatch();

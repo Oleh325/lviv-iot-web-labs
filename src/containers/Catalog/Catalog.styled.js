@@ -130,4 +130,7 @@ export const ItemsContainer = styled.div`
             box-shadow: 0 2.5em 0 0;
         }
     }
+    .hidden {
+        display: none;
+    }
 `

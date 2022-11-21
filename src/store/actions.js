@@ -72,3 +72,7 @@ export const removeFilter = (state, action) => {
 export const removeAllFilters = (state) => {
     state.filtersList = [];
 }
+
+export const addSearch = (state, action) => {
+    state.input = action.payload;
+}

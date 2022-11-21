@@ -1,5 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { addItemToCart, removeItemFromCart, incrementItem, decrementItem, addFilter, removeFilter, removeAllFilters } from "./actions";
+import { addItemToCart,
+    removeItemFromCart,
+    incrementItem,
+    decrementItem,
+    addFilter,
+    removeFilter,
+    removeAllFilters,
+    addSearch } from "./actions";
 
 export const cartSlice = createSlice({
     name: "cart",
@@ -20,3 +27,13 @@ export const filtersSlice = createSlice({
 });
 
 export const filtersActions = filtersSlice.actions;
+
+export const searchSlice = createSlice({
+    name: "search",
+    initialState: {
+        input: ""
+    },
+    reducers: { addSearch }
+});
+
+export const searchActions = searchSlice.actions;

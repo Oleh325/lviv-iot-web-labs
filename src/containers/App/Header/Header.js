@@ -1,21 +1,21 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { HeaderContainer } from "./Header.styled";
 import logo from "../../../images/logo.png"; 
 import Navigation from "../../Navigation/Navigation";
 import Searchbar from "../../Catalog/Searchbar/Searchbar";
+import { useNavigate } from 'react-router-dom';
 
-const Header = ( { onInputSubmit } ) => {
+const Header = () => {
+    const navigate = useNavigate();
 
-    const updateInput = (input) => {
-        onInputSubmit(input);
-    }
+    useEffect(() => {}, [navigate]); 
 
     return(
         <div>
             <HeaderContainer>
                 <img src={logo} alt={"logo"}></img>
                 <Navigation />
-                <Searchbar hiddenClassName={window.location.pathname === "/catalog" ? "" : "hidden"} onSearch={updateInput} />
+                <Searchbar hiddenClassName={window.location.pathname === "/catalog" ? "" : "hidden"} />
             </HeaderContainer>
         </div>
     );
