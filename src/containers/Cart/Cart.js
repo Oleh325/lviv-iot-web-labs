@@ -22,7 +22,7 @@ const Cart = () => {
             <ItemsContainer>
                 { empty && <div className="empty">The cart is empty!</div>}
                 { !empty && items.map(item => {
-                    return <CartItem id={item.id} quantity={item.quantity} key={item.id} />
+                    return <CartItem id={item.id} quantity={item.quantity} compositeId={item.compositeId} key={item.id} />
                 })}
                 { !empty && <Total>
                     <div className="total">Total amount: </div>

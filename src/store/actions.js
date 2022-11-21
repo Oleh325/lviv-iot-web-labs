@@ -1,12 +1,13 @@
 export const addItemToCart = (state, action) => {
     const newItem = action.payload;
 
-    const item = state.itemsList.find((item) => item.id === newItem.id);
+    const item = state.itemsList.find((item) => item.compositeId === newItem.id + newItem.option);
     if (item) {
         item.quantity++;
     } else {
         state.itemsList.push({
             id: newItem.id,
+            compositeId: newItem.id + newItem.option,
             price: newItem.price,
             quantity: 1
         });
@@ -16,16 +17,16 @@ export const addItemToCart = (state, action) => {
 export const removeItemFromCart = (state, action) => {
     const id = action.payload;
     
-    const item = state.itemsList.find((item) => item.id === id);
+    const item = state.itemsList.find((item) => item.compositeId === id);
     if (item) {
-        state.itemsList = state.itemsList.filter((item) => item.id !== id);
+        state.itemsList = state.itemsList.filter((item) => item.compositeId !== id);
     }
 }
 
 export const incrementItem = (state, action) => {
     const id = action.payload;
 
-    const item = state.itemsList.find((item) => item.id === id);
+    const item = state.itemsList.find((item) => item.compositeId === id);
 
     if (item) {
         item.quantity++;
@@ -35,7 +36,7 @@ export const incrementItem = (state, action) => {
 export const decrementItem = (state, action) => {
     const id = action.payload;
 
-    const item = state.itemsList.find((item) => item.id === id);
+    const item = state.itemsList.find((item) => item.compositeId === id);
 
     if (item) {
         if (item.quantity > 1) {

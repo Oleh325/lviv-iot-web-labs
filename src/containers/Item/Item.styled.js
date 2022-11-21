@@ -6,6 +6,9 @@ export const ItemContainer = styled.div`
     height: 92vh;
     margin: 2rem 3rem;
     gap: 10rem;
+    .shown {
+        opacity: 1;
+    }
 `
 
 export const ItemContent = styled.div`
