@@ -1,9 +1,19 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { FilterContainer } from "./Filters.styled";
+import { useSelector } from "react-redux";
 
 const WeightFilter = ( { hiddenClassName, onChange } ) => {
     const [weight, setWeight] = useState("all");
+    const filtersList = useSelector((state) => state.filters.filtersList);
+
+    useEffect(() => {
+        if (filtersList.find((filter) => filter.name === "weight")) {
+            setWeight(filtersList.find((filter) => filter.name === "weight").filter);
+        } else {
+            setWeight("all");
+        }
+    }, [filtersList]);
 
     return(
         <FilterContainer className={hiddenClassName}>

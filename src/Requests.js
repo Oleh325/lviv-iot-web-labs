@@ -24,15 +24,41 @@ export const getCats = async () => {
 }
 
 export const getCatsWithFilters = async (cuteness, color, weight) => {
-    let cats = await axios.get(`http://localhost:8080/api/cats/filters?cuteness=${cuteness}&color=${color}&weight=${weight}`)
-    .then((response) => {
-        return response.data._embedded.cats.map(cat => {
-            cat.hidden = "";
-            return cat;
+    let filters = "";
+    if (cuteness !== "all") {
+        if (filters === "") {
+            filters += `cuteness=${cuteness}`
+        } else {
+            filters += `&cuteness=${cuteness}`
+        }
+    }
+    if (color !== "all") {
+        if (filters === "") {
+            filters += `color=${color}`
+        } else {
+            filters += `&color=${color}`
+        }
+    }
+    if (weight !== "all") {
+        if (filters === "") {
+            filters += `weight=${cuteness}`
+        } else {
+            filters += `&weight=${cuteness}`
+        }
+    }
+    if (filters === "") {
+        return getCats();
+    } else {
+        let cats = await axios.get(`http://localhost:8080/api/cats/filters?${filters}`)
+        .then((response) => {
+            return response.data._embedded.cats.map(cat => {
+                cat.hidden = "";
+                return cat;
+            });
+        })
+        .catch((error) => {
+            console.log(error);
         });
-    })
-    .catch((error) => {
-        console.log(error);
-    });
-    return cats;
+        return cats;
+    }
 }

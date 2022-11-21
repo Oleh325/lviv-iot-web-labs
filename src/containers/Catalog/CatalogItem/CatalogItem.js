@@ -11,7 +11,7 @@ const CatalogItem = ( { title, description, price, imagesrc, id, hiddenClassName
                 <div className="description">{description}</div>
                 <div className="price-content">
                     <div className="price-title">Price:</div>
-                    <div className="price">${price}</div>
+                    <div className="price">{price}$</div>
                 </div>
             </div>
             <Link to={"/item/" + id} className="link"><div className="text">View more</div></Link>

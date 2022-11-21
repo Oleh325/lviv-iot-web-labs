@@ -9,7 +9,6 @@ import ua.lviv.iot.web.backend.service.CatService;
 
 import javax.transaction.Transactional;
 import java.util.HashSet;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
@@ -38,7 +37,7 @@ public class CatServiceImpl implements CatService {
         } else {
             Integer cutenessFrom = Integer.parseInt(cuteness.split("to")[0]);
             Integer cutenessTo = Integer.parseInt(cuteness.split("to")[1]);
-            catsCuteness = Set.copyOf(catRepository.findWithFilterCuteness(cutenessFrom, cutenessTo));
+            catsCuteness = Set.copyOf(catRepository.findWithFilterCuteness(cutenessFrom, cutenessTo == 100 ? 101 : cutenessTo));
         }
         if (color.equals("all")) {
             catsColor = Set.copyOf(catRepository.findAll());

@@ -1,9 +1,19 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 import { FilterContainer } from "./Filters.styled";
 
 const ColorFilter = ( { hiddenClassName, onChange } ) => {
     const [color, setColor] = useState("all");
+    const filtersList = useSelector((state) => state.filters.filtersList);
+
+    useEffect(() => {
+        if (filtersList.find((filter) => filter.name === "color")) {
+            setColor(filtersList.find((filter) => filter.name === "color").filter);
+        } else {
+            setColor("all");
+        }
+    }, [filtersList]);
 
     return(
         <FilterContainer className={hiddenClassName}>

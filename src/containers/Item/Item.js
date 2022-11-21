@@ -6,10 +6,13 @@ import { ItemContainer,
         from "./Item.styled";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { cartActions } from "../../store/reducers";
 
 const Item = () => {
     const [selectedOption, setSelectedOption] = useState("");
     const [cat, setCat] = useState({});
+    const dispatch = useDispatch();
     
     const id = useParams().id;
 
@@ -22,6 +25,13 @@ const Item = () => {
     }, [id]);
 
     useEffect(() => setSelectedOption(cat.options ? cat.options[0] : ""), [cat]);
+
+    const addToCart = () => {
+        dispatch(cartActions.addItemToCart({
+            id,
+            price: cat.price
+        }));
+    }
     
     return(
         <ItemContainer>
@@ -49,7 +59,7 @@ const Item = () => {
                 <div className="price">Price: {cat.price}$</div>
                 <div className="buttons">
                     <Link to="/catalog" className="back-button"><div>Go back</div></Link>
-                    <button className="addtocart-button">Add to cart</button>
+                    <button className="addtocart-button" onClick={addToCart}>Add to cart</button>
                 </div>
             </ItemFooter>
         </ItemContainer>
