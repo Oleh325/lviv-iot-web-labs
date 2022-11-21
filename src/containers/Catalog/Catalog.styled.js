@@ -30,12 +30,24 @@ export const Filters = styled.div`
     flex-direction: column;
     gap: 2rem;
     display: flex;
+    .filter-buttons-upper {
+        display: flex;
+        gap: 2rem;
+    }
     button {
         width: 11%;
         height: 3rem;
         border: 0.08rem solid lightgrey;
         font-size: 1rem;
         font-family: sanspro-regular;
+    }
+    .clear-filters {
+        width: 11%;
+        height: 3rem;
+        border: 0.08rem solid red;
+        font-size: 1rem;
+        color: red;
+        font-family: sanspro-regular;  
     }
     .filters {
         display: block;
@@ -117,8 +129,5 @@ export const ItemsContainer = styled.div`
         40% {
             box-shadow: 0 2.5em 0 0;
         }
-    }
-    .hidden {
-        display: none;
     }
 `

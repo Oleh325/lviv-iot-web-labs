@@ -1,9 +1,19 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { FilterContainer } from "./Filters.styled";
+import { useSelector } from "react-redux";
 
 const CutenessFilter = ( { hiddenClassName, onChange } ) => {
     const [cuteness, setCuteness] = useState("all");
+    const filtersList = useSelector((state) => state.filters.filtersList);
+
+    useEffect(() => {
+        if (filtersList.find((filter) => filter.name === "cuteness")) {
+            setCuteness(filtersList.find((filter) => filter.name === "cuteness").filter);
+        } else {
+            setCuteness("all");
+        }
+    }, [filtersList]);
 
     return(
         <FilterContainer className={hiddenClassName}>
