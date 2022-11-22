@@ -12,7 +12,9 @@ import { cartActions } from "../../store/reducers";
 
 const Item = () => {
     const [selectedOption, setSelectedOption] = useState("");
+    const [popupOption, setPopupOption] = useState("");
     const [cat, setCat] = useState({});
+    const [popup, setPopup] = useState(<></>);
     const [isShownPopup, setIsShownPopup] = useState(false);
     const dispatch = useDispatch();
     
@@ -39,9 +41,24 @@ const Item = () => {
         setIsShownPopup(false);
     }
     
+    useEffect(() => {
+        if (isShownPopup) {
+            setPopup(<ItemAddedPopup option={selectedOption} itemName={cat.title} isShown={isShownPopup} />);
+            setPopupOption(selectedOption);
+        } else {
+            if (selectedOption === popupOption) {
+                setPopup(<ItemAddedPopup option={selectedOption} itemName={cat.title} isShown={isShownPopup} />);
+            } else {
+                setPopup(<ItemAddedPopup option={popupOption} itemName={cat.title} isShown={isShownPopup} />);
+                setPopupOption(selectedOption);
+            }
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [isShownPopup]);
+
     return(
         <ItemContainer>
-            <ItemAddedPopup option={selectedOption} itemName={cat.title} isShown={isShownPopup} />
+            {popup}
             <ItemContent>
                 <img src={cat.imagesrc} alt=""></img>
                 <div className="content-specs">

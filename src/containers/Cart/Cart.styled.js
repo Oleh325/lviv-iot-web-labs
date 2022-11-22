@@ -28,12 +28,15 @@ export const CartContainer = styled.div`
         font-size: 1rem;
         cursor: pointer; 
     }
-    .addtocart-button {
+    .checkout-button {
         height: 3rem;
         width: 8rem;
         background: #424242;
-        color: white;      
-        border: none;
+        color: white;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         border-radius: 0.75rem; 
         font-weight: 600;
         font-size: 1rem;
