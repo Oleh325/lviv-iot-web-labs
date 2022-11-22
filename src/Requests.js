@@ -62,3 +62,7 @@ export const getCatsWithFilters = async (cuteness, color, weight) => {
         return cats;
     }
 }
+
+export const sendEmail = async ( { title, body, receiver } ) => {
+    // sending email logic
+}

@@ -19,10 +19,19 @@ export const CartItemContainer = styled.div`
             overflow: hidden;
             border-radius: 0.75rem 0 0 0.75rem;
         }
-        .title {
-            color: #333333;
-            font-weight: 600;
-            font-size: 3rem;
+        .left-text {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            .title {
+                color: #333333;
+                font-weight: 600;
+                font-size: 3rem;
+            }
+            .option {
+                color: #333333;
+                font-size: 1.2rem;
+            }
         }   
     }
     .right-content {

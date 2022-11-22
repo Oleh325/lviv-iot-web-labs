@@ -4,7 +4,7 @@ import { getCatById } from "../../../Requests";
 import { useDispatch } from "react-redux";
 import { cartActions } from "../../../store/reducers";
 
-const CartItem = ( { id, quantity } ) => {
+const CartItem = ( { id, quantity, compositeId } ) => {
     const [cartCat, setCartCat] = useState({});
     const dispatch = useDispatch();
 
@@ -14,25 +14,29 @@ const CartItem = ( { id, quantity } ) => {
             setCartCat(fetchedCat == null ? {} : fetchedCat);
         } 
         getCartCatAsync(id);
-    }, [id]);
+    }, [id, compositeId]);
 
     const removeFromCart = () => {
-        dispatch(cartActions.removeItemFromCart(id));
+        console.log(compositeId);
+        dispatch(cartActions.removeItemFromCart(compositeId));
     }
 
     const incrementItem = () => {
-        dispatch(cartActions.incrementItem(id));
+        dispatch(cartActions.incrementItem(compositeId));
     }
 
     const decrementItem = () => {
-        dispatch(cartActions.decrementItem(id));
+        dispatch(cartActions.decrementItem(compositeId));
     }
 
     return(
         <CartItemContainer>
             <div className="left-content">
                 <img src={cartCat.imagesrc} alt="cat"></img>
-                <div className="title">{cartCat.title}</div>
+                <div className="left-text">
+                    <div className="title">{cartCat.title}</div>
+                    <div className="option">Option: {compositeId.replace(id, "")}</div>
+                </div>
             </div>
             <div className="right-content">
                 <div className="amount-controls">                

@@ -4,6 +4,7 @@ import { ItemContainer,
         ItemContent,
         ItemFooter }
         from "./Item.styled";
+import ItemAddedPopup from "./ItemAddedPopup/ItemAddedPopup";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
@@ -11,7 +12,10 @@ import { cartActions } from "../../store/reducers";
 
 const Item = () => {
     const [selectedOption, setSelectedOption] = useState("");
+    const [popupOption, setPopupOption] = useState("");
     const [cat, setCat] = useState({});
+    const [popup, setPopup] = useState(<></>);
+    const [isShownPopup, setIsShownPopup] = useState(false);
     const dispatch = useDispatch();
     
     const id = useParams().id;
@@ -26,15 +30,35 @@ const Item = () => {
 
     useEffect(() => setSelectedOption(cat.options ? cat.options[0] : ""), [cat]);
 
-    const addToCart = () => {
+    const addToCart = async () => {
         dispatch(cartActions.addItemToCart({
             id,
-            price: cat.price
+            price: cat.price,
+            option: selectedOption
         }));
+        setIsShownPopup(true);
+        await new Promise(r => setTimeout(r, 1700));
+        setIsShownPopup(false);
     }
     
+    useEffect(() => {
+        if (isShownPopup) {
+            setPopup(<ItemAddedPopup option={selectedOption} itemName={cat.title} isShown={isShownPopup} />);
+            setPopupOption(selectedOption);
+        } else {
+            if (selectedOption === popupOption) {
+                setPopup(<ItemAddedPopup option={selectedOption} itemName={cat.title} isShown={isShownPopup} />);
+            } else {
+                setPopup(<ItemAddedPopup option={popupOption} itemName={cat.title} isShown={isShownPopup} />);
+                setPopupOption(selectedOption);
+            }
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [isShownPopup]);
+
     return(
         <ItemContainer>
+            {popup}
             <ItemContent>
                 <img src={cat.imagesrc} alt=""></img>
                 <div className="content-specs">
