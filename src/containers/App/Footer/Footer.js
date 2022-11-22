@@ -17,6 +17,11 @@ import logo_gp from "../../../images/logo_gp.png";
 import logo from "../../../images/logo.png";
 
 const Footer = () => {
+
+    const playMeow = () => {
+        document.getElementById("meow").play();
+    }
+
     return(
         <FooterContainer>
             <FooterContent bgImage={logo} >
@@ -24,7 +29,7 @@ const Footer = () => {
                     <FooterTitle>Branding stuff</FooterTitle>
                     <FooterDescription>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc maximus, nulla ut commodo</FooterDescription>
                 </FooterText>
-                <LogoPaw src={logo} alt={"logo"} />
+                <LogoPaw src={logo} alt={"logo"} onClick={playMeow} />
                 <FooterLogos>
                     <Logo image={logo_fb} name="facebook" link="https://www.facebook.com/planespotter325" />
                     <Logo image={logo_tw} name="twitter" link="https://twitter.com/OlegYatskiv325" />
