@@ -5,6 +5,7 @@ export const CatalogItemContainer = styled.div`
     border-radius: 1rem;
     height: 25rem;
     width: 20%;
+    margin-left: 3.7rem;
     display: flex;
     flex-direction: column;
     align-items: center;

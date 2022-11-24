@@ -4,7 +4,7 @@ export const CheckoutContainer = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 5rem;
+    gap: 6rem;
     margin: 2rem auto;
     width: 90%;
     min-height: 87vh;
@@ -13,7 +13,7 @@ export const CheckoutContainer = styled.div`
         display: flex;
         flex-direction: column;
         align-items: center;
-        gap: 5rem;
+        gap: 7rem;
     }
     .inputs {
         display: flex;

@@ -11,6 +11,7 @@ export const getCatById = async (id) => {
 }
 
 export const getCats = async () => {
+    let err = "";
     let cats = await axios.get(`http://localhost:8080/api/cats/`).then((response) => {
         return response.data._embedded.cats.map(cat => {
             cat.hidden = "";
@@ -18,13 +19,14 @@ export const getCats = async () => {
         });
     })
     .catch((error) => {
-        console.log(error);
+        err = error.message;
     });
-    return cats;
+    return [cats, err];
 }
 
 export const getCatsWithFilters = async (cuteness, color, weight) => {
     let filters = "";
+    let err = "";
     if (cuteness !== "all") {
         if (filters === "") {
             filters += `cuteness=${cuteness}`
@@ -57,9 +59,9 @@ export const getCatsWithFilters = async (cuteness, color, weight) => {
             });
         })
         .catch((error) => {
-            console.log(error);
+            err = error;
         });
-        return cats;
+        return [cats, err];
     }
 }
 

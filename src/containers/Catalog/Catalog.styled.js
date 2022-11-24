@@ -68,14 +68,12 @@ export const FiltersBorder = styled.div`
 `
 
 export const ItemsContainer = styled.div`
-    margin-left: 4.6rem;
     display: flex;
     align-items: center;
-    width: 100%;
     justify-content: flex-start;
-    gap: 4.6rem;
     row-gap: 2rem;
     flex-wrap: wrap;
+    width: 100%;
     .loader, .loader:before, .loader:after {
         border-radius: 50%;
         width: 2.5em;
@@ -129,6 +127,12 @@ export const ItemsContainer = styled.div`
         40% {
             box-shadow: 0 2.5em 0 0;
         }
+    }
+    .error {
+        color: red;
+        font-size: 2rem;
+        margin: 3rem auto 0 auto;
+        position: relative;
     }
     .hidden {
         display: none;

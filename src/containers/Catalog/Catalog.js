@@ -17,6 +17,7 @@ import { filtersActions } from "../../store/reducers";
 const Catalog = () => {
     const [isFiltersOn, setIsFiltersOn] = useState(false);
     const [cats, setCats] = useState([]);
+    const [error, setError] = useState("");
     const input = useSelector((state) => state.search.input);
     const filtersList = useSelector((state) => state.filters.filtersList);
     const [loaderHidden, setLoaderHidden] = useState(false);
@@ -78,7 +79,8 @@ const Catalog = () => {
         if (filtersList.find((filter) => filter.name === "weight")) {
             weight = filtersList.find((filter) => filter.name === "weight").filter;
         }
-        const fetchedCats = await getCatsWithFilters(cuteness, color, weight);
+        const [fetchedCats, err] = await getCatsWithFilters(cuteness, color, weight);
+        setError(err);
         setCats(fetchedCats == null ? [] : fetchedCats.map(cat => {
             if (cat.title.search(input) !== -1 || input === "" || input === null) {
                 cat.hidden = "";
@@ -95,7 +97,8 @@ const Catalog = () => {
         setIsFiltersOn(false);
         setCats([]);
         setLoaderHidden(false);
-        const fetchedCats = await getCats();
+        const [fetchedCats, err] = await getCats();
+        setError(err);
         setCats(fetchedCats == null ? [] : fetchedCats.map(cat => {
             if (cat.title.search(input) !== -1 || input === "" || input === null) {
                 cat.hidden = "";
@@ -128,6 +131,7 @@ const Catalog = () => {
             <FiltersBorder />
             <ItemsContainer>
                 { !loaderHidden && <div className="loader"/> }
+                { loaderHidden && error !== "" && <div className="error">{error}</div> }
                 {cats.map(cat => {
                     return <CatalogItem imagesrc={cat.imagesrc} title={cat.title} description={cat.description} price={cat.price} id={cat.id} key={cat.id} hiddenClassName={cat.hidden ? cat.hidden : ""} />
                 })}
