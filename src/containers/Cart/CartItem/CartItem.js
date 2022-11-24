@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { CartItemContainer } from "./CartItem.styled";
 import { getCatById } from "../../../Requests";
 import { useDispatch } from "react-redux";
-import { cartActions } from "../../../store/reducers";
+import { cartActions } from "../../../store/slices";
 
 const CartItem = ( { id, quantity, compositeId } ) => {
     const [cartCat, setCartCat] = useState({});

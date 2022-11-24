@@ -12,7 +12,7 @@ import CatalogItem from "./CatalogItem/CatalogItem";
 import { FiltersBorder, Filters } from "./Catalog.styled";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { filtersActions } from "../../store/reducers";
+import { filtersActions } from "../../store/slices";
 
 const Catalog = () => {
     const [isFiltersOn, setIsFiltersOn] = useState(false);

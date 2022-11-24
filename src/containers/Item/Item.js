@@ -8,7 +8,7 @@ import ItemAddedPopup from "./ItemAddedPopup/ItemAddedPopup";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { cartActions } from "../../store/reducers";
+import { cartActions } from "../../store/slices";
 
 const Item = () => {
     const [selectedOption, setSelectedOption] = useState("");
