@@ -17,7 +17,7 @@ import java.util.Set;
 @RequiredArgsConstructor
 public class CatServiceImpl implements CatService {
 
-    private CatRepository catRepository;
+    private final CatRepository catRepository;
 
     public List<Cat> findAll() {
         List<Cat> cats = catRepository.findAll();

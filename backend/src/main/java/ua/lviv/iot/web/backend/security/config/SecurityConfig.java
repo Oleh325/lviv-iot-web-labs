@@ -44,10 +44,10 @@ public class SecurityConfig implements WebMvcConfigurer {
                 .cors().and().csrf().disable()
                 .authorizeHttpRequests(auth -> {
                     try {
-                        auth.antMatchers("/api/cats/**").hasRole("USER")
-                            .antMatchers(HttpMethod.POST, "/api/cats/").hasRole("ADMIN")
-                            .antMatchers(HttpMethod.PUT, "/api/cats/{^[\\d]+$}").hasRole("ADMIN")
-                            .antMatchers(HttpMethod.DELETE, "/api/cats/{^[\\d]+$}").hasRole("ADMIN")
+                        auth.antMatchers(HttpMethod.POST, "/api/cats/").hasAuthority("ADMIN")
+                            .antMatchers(HttpMethod.PUT, "/api/cats/{^[\\d]+$}").hasAuthority("ADMIN")
+                            .antMatchers(HttpMethod.DELETE, "/api/cats/{^[\\d]+$}").hasAuthority("ADMIN")
+                            .antMatchers("/api/cats/**").hasAuthority("USER")
                             .anyRequest().permitAll()
                             .and()
                             .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
