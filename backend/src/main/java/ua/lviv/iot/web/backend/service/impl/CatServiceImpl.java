@@ -1,5 +1,6 @@
 package ua.lviv.iot.web.backend.service.impl;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ua.lviv.iot.web.backend.domain.Cat;
@@ -13,9 +14,9 @@ import java.util.List;
 import java.util.Set;
 
 @Service
+@RequiredArgsConstructor
 public class CatServiceImpl implements CatService {
 
-    @Autowired
     private CatRepository catRepository;
 
     public List<Cat> findAll() {
@@ -25,7 +26,7 @@ public class CatServiceImpl implements CatService {
                 cat.setImagesrc("https://cataas.com/cat");
             }
         }
-        return catRepository.findAll();
+        return cats;
     }
 
     public List<Cat> findWithFilter(String cuteness, String color, String weight) {

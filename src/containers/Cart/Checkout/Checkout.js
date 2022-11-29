@@ -4,15 +4,19 @@ import { Link, useNavigate } from "react-router-dom";
 import { Formik, Form } from "formik";
 import CustomInput from "./CustomInput";
 import { checkoutSchema } from "../../../schemas/index";
+import { useDispatch } from "react-redux";
+import { cartActions } from "../../../store/slices";
 
 const Checkout = () => {
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     const onSubmit = async (values, actions) => {
         console.log(values);
         // await sendEmail();
         await new Promise((r) => setTimeout(r, 1000));
         actions.resetForm();
+        dispatch(cartActions.clearCart())
         navigate("/cart/success");
     }
 

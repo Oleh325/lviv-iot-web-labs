@@ -22,6 +22,7 @@ const Catalog = () => {
     const filtersList = useSelector((state) => state.filters.filtersList);
     const [loaderHidden, setLoaderHidden] = useState(false);
     const dispatch = useDispatch();
+    const addCat = <button className="add-cat"><div className="text">+</div></button>;
 
     const onColorChange = (color) => {
         dispatch(filtersActions.addFilter({
@@ -135,6 +136,7 @@ const Catalog = () => {
                 {cats.map(cat => {
                     return <CatalogItem imagesrc={cat.imagesrc} title={cat.title} description={cat.description} price={cat.price} id={cat.id} key={cat.id} hiddenClassName={cat.hidden ? cat.hidden : ""} />
                 })}
+                {cats.length !== 0 && addCat}
             </ItemsContainer>
         </CatalogContainer>
     );

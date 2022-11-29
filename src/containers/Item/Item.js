@@ -16,6 +16,7 @@ const Item = () => {
     const [cat, setCat] = useState({});
     const [popup, setPopup] = useState(<></>);
     const [isShownPopup, setIsShownPopup] = useState(false);
+    const editCat = <button className="edit-cat"><div className="text">Edit</div></button>;
     const dispatch = useDispatch();
     
     const id = useParams().id;
@@ -79,6 +80,7 @@ const Item = () => {
                     </div>
                 </div>
             </ItemContent>
+            {editCat}
             <ItemFooter>
                 <div className="price">Price: {cat.price}$</div>
                 <div className="buttons">

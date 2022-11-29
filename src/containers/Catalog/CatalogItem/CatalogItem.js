@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import { CatalogItemContainer } from "./CatalogItem.styled";
 
 const CatalogItem = ( { title, description, price, imagesrc, id, hiddenClassName } ) => {
+    const removeCat = <button className="button-remove">X</button>;
+
     return (
         <CatalogItemContainer className={hiddenClassName}>
             <img src={imagesrc} alt="cat"></img>
@@ -15,6 +17,7 @@ const CatalogItem = ( { title, description, price, imagesrc, id, hiddenClassName
                 </div>
             </div>
             <Link to={"/item/" + id} className="link"><div className="text">View more</div></Link>
+            {removeCat}
         </CatalogItemContainer>
     );
 }

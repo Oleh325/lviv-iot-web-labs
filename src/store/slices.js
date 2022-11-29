@@ -6,14 +6,15 @@ import { addItemToCart,
     addFilter,
     removeFilter,
     removeAllFilters,
-    addSearch } from "./actions";
+    addSearch,
+    clearCart } from "./actions";
 
 export const cartSlice = createSlice({
     name: "cart",
     initialState: {
         itemsList: []
     },
-    reducers: { addItemToCart, removeItemFromCart, incrementItem, decrementItem }
+    reducers: { addItemToCart, removeItemFromCart, incrementItem, decrementItem, clearCart }
 });
 
 export const cartActions = cartSlice.actions;

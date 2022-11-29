@@ -74,6 +74,25 @@ export const ItemsContainer = styled.div`
     row-gap: 2rem;
     flex-wrap: wrap;
     width: 100%;
+    .add-cat {
+        border: 0.1rem solid darkgray;
+        border-radius: 1rem;
+        height: 25rem;
+        width: 20%;
+        margin-left: 3.7rem;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 0.6rem;
+        cursor: pointer;
+        background: none;
+        .text {
+            color: darkgray;
+            font-size: 10rem;
+        }
+    }
     .loader, .loader:before, .loader:after {
         border-radius: 50%;
         width: 2.5em;

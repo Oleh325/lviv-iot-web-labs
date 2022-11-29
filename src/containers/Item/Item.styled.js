@@ -6,6 +6,22 @@ export const ItemContainer = styled.div`
     height: 92vh;
     margin: 2rem 3rem;
     gap: 10rem;
+    .edit-cat {
+        margin-top: -8rem;
+        margin-bottom: -2rem;
+        width: 8rem;
+        height: 3rem;
+        align-self: flex-end;
+        border-radius: 0.75rem;
+        border: none;
+        background-color: #5555FF;
+        cursor: pointer;
+        .text {
+            color: white;
+            font-size: 1rem;
+            font-weight: 600;
+        }
+    }
     .shown {
         opacity: 1;
     }

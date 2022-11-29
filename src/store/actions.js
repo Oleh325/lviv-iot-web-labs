@@ -23,6 +23,10 @@ export const removeItemFromCart = (state, action) => {
     }
 }
 
+export const clearCart = (state) => {
+    state.itemsList = [];
+}
+
 export const incrementItem = (state, action) => {
     const id = action.payload;
 
