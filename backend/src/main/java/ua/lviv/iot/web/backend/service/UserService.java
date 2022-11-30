@@ -10,4 +10,8 @@ public interface UserService extends GeneralService<User, Integer> {
 
     User findByEmail(String email);
 
+    void addRole(Integer userId, String name);
+
+    void removeRole(Integer userId, String name);
+
 }

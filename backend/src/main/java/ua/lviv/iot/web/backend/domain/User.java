@@ -15,7 +15,7 @@ public class User implements UserDetails {
     private int id;
     @Builder.Default
     private String uuid = UUID.randomUUID().toString();
-    private String username;
+    private String usernameUser;
     private String email;
     private String password;
     private Set<Role> roles;
@@ -36,12 +36,12 @@ public class User implements UserDetails {
 
     @Basic
     @Column(name = "username")
-    public String getUsername() {
-        return username;
+    public String getUsernameUser() {
+        return usernameUser;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setUsernameUser(String usernameUser) {
+        this.usernameUser = usernameUser;
     }
 
     @Basic
@@ -75,6 +75,12 @@ public class User implements UserDetails {
 
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
+    }
+
+    @Transient
+    @Override
+    public String getUsername() {
+        return email;
     }
 
     @Transient

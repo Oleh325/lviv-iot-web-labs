@@ -16,9 +16,7 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.HttpStatusEntryPoint;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-import ua.lviv.iot.web.backend.security.AuthSuccessHandler;
-import ua.lviv.iot.web.backend.security.JWTAuthorizationFilter;
-import ua.lviv.iot.web.backend.security.JsonObjectAuthenticationFilter;
+import ua.lviv.iot.web.backend.security.*;
 import ua.lviv.iot.web.backend.service.impl.UserDetailsServiceImpl;
 
 @Configuration
@@ -30,12 +28,15 @@ public class SecurityConfig implements WebMvcConfigurer {
     private AuthenticationManager authenticationManager;
     private final AuthSuccessHandler authSuccessHandler;
     private final UserDetailsServiceImpl userDetailsService;
+    private final JWTUtil jwtUtil;
     private final String secret;
 
-    public SecurityConfig(AuthSuccessHandler authSuccessHandler, UserDetailsServiceImpl userDetailsService, @Value("${jwt.secret}") String secret) {
+    public SecurityConfig(AuthSuccessHandler authSuccessHandler, UserDetailsServiceImpl userDetailsService,
+                          @Value("${jwt.secret}") String secret, JWTUtil jwtUtil) {
         this.authSuccessHandler = authSuccessHandler;
         this.userDetailsService = userDetailsService;
         this.secret = secret;
+        this.jwtUtil = jwtUtil;
     }
 
     @Bean
@@ -47,13 +48,15 @@ public class SecurityConfig implements WebMvcConfigurer {
                         auth.antMatchers(HttpMethod.POST, "/api/cats/").hasAuthority("ADMIN")
                             .antMatchers(HttpMethod.PUT, "/api/cats/{^[\\d]+$}").hasAuthority("ADMIN")
                             .antMatchers(HttpMethod.DELETE, "/api/cats/{^[\\d]+$}").hasAuthority("ADMIN")
+                            .antMatchers(HttpMethod.POST, "/api/auth/users/{^[\\d]+$}/**").hasAuthority("ADMIN")
+                            .antMatchers(HttpMethod.DELETE, "/api/auth/users/{^[\\d]+$}/**").hasAuthority("ADMIN")
                             .antMatchers("/api/cats/**").hasAuthority("USER")
                             .anyRequest().permitAll()
                             .and()
                             .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                             .and()
                             .addFilter(authenticationFilter())
-                            .addFilter(new JWTAuthorizationFilter(authenticationManager, userDetailsService, secret))
+                            .addFilter(new JWTAuthorizationFilter(authenticationManager, userDetailsService, secret, jwtUtil))
                             .exceptionHandling()
                             .authenticationEntryPoint(new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED));
                     } catch (Exception e) {
@@ -74,6 +77,7 @@ public class SecurityConfig implements WebMvcConfigurer {
         JsonObjectAuthenticationFilter filter = new JsonObjectAuthenticationFilter();
         filter.setAuthenticationSuccessHandler(authSuccessHandler);
         filter.setAuthenticationManager(authenticationManager);
+        filter.setFilterProcessesUrl("/api/cats/login");
         return filter;
     }
 }

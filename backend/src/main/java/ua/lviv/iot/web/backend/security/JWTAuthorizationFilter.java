@@ -2,35 +2,44 @@ package ua.lviv.iot.web.backend.security;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
+import org.springframework.stereotype.Component;
 import ua.lviv.iot.web.backend.service.impl.UserDetailsServiceImpl;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.Objects;
 
+@Component
 public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
 
     private static final String TOKEN_PREFIX = "Bearer ";
     private final UserDetailsServiceImpl userDetailsService;
     private final String secret;
+    private final JWTUtil jwtUtil;
 
-    public JWTAuthorizationFilter(AuthenticationManager authenticationManager, UserDetailsServiceImpl userDetailsService, String secret) {
+    public JWTAuthorizationFilter(AuthenticationManager authenticationManager, UserDetailsServiceImpl userDetailsService,
+                                  @Value("${jwt.secret}") String secret, JWTUtil jwtUtil) {
         super(authenticationManager);
         this.userDetailsService = userDetailsService;
         this.secret = secret;
+        this.jwtUtil = jwtUtil;
     }
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws IOException, ServletException {
-        UsernamePasswordAuthenticationToken auth = getAuthentication(request);
+        UsernamePasswordAuthenticationToken auth = getAuthentication(request, response);
         if (auth == null) {
             chain.doFilter(request, response);
             return;
@@ -39,7 +48,7 @@ public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
         chain.doFilter(request, response);
     }
 
-    private UsernamePasswordAuthenticationToken getAuthentication(HttpServletRequest request) {
+    private UsernamePasswordAuthenticationToken getAuthentication(HttpServletRequest request, HttpServletResponse response) {
         String token = request.getHeader(HttpHeaders.AUTHORIZATION);
         if (token == null || !token.startsWith(TOKEN_PREFIX)) {
             return null;
