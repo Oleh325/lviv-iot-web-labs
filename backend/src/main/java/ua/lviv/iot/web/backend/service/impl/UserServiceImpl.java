@@ -3,6 +3,7 @@ package ua.lviv.iot.web.backend.service.impl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import ua.lviv.iot.web.backend.domain.Role;
 import ua.lviv.iot.web.backend.domain.User;
 import ua.lviv.iot.web.backend.exception.UserNotFoundException;
 import ua.lviv.iot.web.backend.repository.RoleRepository;
@@ -10,7 +11,9 @@ import ua.lviv.iot.web.backend.repository.UserRepository;
 import ua.lviv.iot.web.backend.service.UserService;
 
 import javax.transaction.Transactional;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Service
 @RequiredArgsConstructor
@@ -33,6 +36,20 @@ public class UserServiceImpl implements UserService {
     @Transactional
     public User create(User user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
+        Set<Role> roles = new HashSet<>();
+        Role userRole = roleRepository.findByName("USER").orElse(null);
+        if (userRole == null) {
+            Role newRole = new Role();
+            newRole.setName("USER");
+            roleRepository.save(newRole);
+            roles.add(newRole);
+        } else {
+            roles.add(userRole);
+        }
+        user.setRoles(roles);
+        if (userRepository.findByEmail(user.getEmail()).isPresent()) {
+            throw new RuntimeException("Account with this email is already registered!");
+        }
         userRepository.save(user);
         return user;
     }
