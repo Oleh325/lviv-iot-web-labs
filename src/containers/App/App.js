@@ -9,24 +9,33 @@ import Login from "../Login/Login";
 import Signup from "../Login/Signup";
 import LayoutDefault from "./LayoutDefault";
 import Layout from "./Layout";
+import Missing from "../Login/Status Components/Missing";
 import { Routes, Route } from "react-router-dom";
+import Unauthorized from "../Login/Status Components/Unauthorized";
+import RequireAuth from "../Login/RequireAuth";
 
 const App = () => {
     return (
         <Routes>
             <Route path="/" element={<LayoutDefault />}>
-                <Route exact path="/" element={<Home />} />
-                <Route exact path="/catalog" element={<Catalog />} />            
-                <Route exact path="/cart" element={<Cart />} />
-                <Route exact path="/cart/checkout" element={<Checkout />} /> 
-                <Route exact path="/cart/success" element={<Success />} />  
-                <Route path="/item/:id" element={ <Item  />} /> 
+                <Route element={<RequireAuth allowedRoles={["USER"]}/>}>
+                    <Route exact path="/" element={<Home />} />
+                    <Route exact path="/catalog" element={<Catalog />} />            
+                    <Route exact path="/cart" element={<Cart />} />
+                    <Route exact path="/cart/checkout" element={<Checkout />} /> 
+                    <Route exact path="/cart/success" element={<Success />} />  
+                    <Route path="/item/:id" element={ <Item  />} /> 
+                </Route>
+                {/* addcat and others to ADMIN */}
             </Route>
 
             <Route path="/" element={<Layout />}>
                 <Route exact path="/login" element={<Login />} />
                 <Route exact path="/signup" element={<Signup />} />
             </Route>
+
+            <Route exact path="/unauthorized" element={<Unauthorized />} />
+            <Route path="*" element={<Missing />} />
         </Routes>
     );
 }

@@ -14,10 +14,14 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.HttpStatusEntryPoint;
-import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import ua.lviv.iot.web.backend.security.*;
 import ua.lviv.iot.web.backend.service.impl.UserDetailsServiceImpl;
+
+import java.util.List;
 
 @Configuration
 @EnableWebSecurity
@@ -27,22 +31,24 @@ public class SecurityConfig implements WebMvcConfigurer {
     @Autowired
     private AuthenticationManager authenticationManager;
     private final AuthSuccessHandler authSuccessHandler;
+    private final AuthFailureHandler authFailureHandler;
     private final UserDetailsServiceImpl userDetailsService;
-    private final JWTUtil jwtUtil;
     private final String secret;
 
-    public SecurityConfig(AuthSuccessHandler authSuccessHandler, UserDetailsServiceImpl userDetailsService,
-                          @Value("${jwt.secret}") String secret, JWTUtil jwtUtil) {
+    public SecurityConfig(AuthSuccessHandler authSuccessHandler, AuthFailureHandler authFailureHandler,
+                          UserDetailsServiceImpl userDetailsService,
+                          @Value("${jwt.secret}") String secret) {
         this.authSuccessHandler = authSuccessHandler;
+        this.authFailureHandler = authFailureHandler;
         this.userDetailsService = userDetailsService;
         this.secret = secret;
-        this.jwtUtil = jwtUtil;
     }
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-                .cors().and().csrf().disable()
+                .cors(Customizer.withDefaults())
+                .csrf().disable()
                 .authorizeHttpRequests(auth -> {
                     try {
                         auth.antMatchers(HttpMethod.POST, "/api/cats/").hasAuthority("ADMIN")
@@ -56,7 +62,7 @@ public class SecurityConfig implements WebMvcConfigurer {
                             .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                             .and()
                             .addFilter(authenticationFilter())
-                            .addFilter(new JWTAuthorizationFilter(authenticationManager, userDetailsService, secret, jwtUtil))
+                            .addFilter(new JWTAuthorizationFilter(authenticationManager, userDetailsService, secret))
                             .exceptionHandling()
                             .authenticationEntryPoint(new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED));
                     } catch (Exception e) {
@@ -67,17 +73,25 @@ public class SecurityConfig implements WebMvcConfigurer {
         return http.build();
     }
 
-    @Override
-    public void addCorsMappings(CorsRegistry registry) {
-        registry.addMapping("/**").allowedMethods("*");
+    @Bean
+    public JsonObjectAuthenticationFilter authenticationFilter() throws Exception {
+        JsonObjectAuthenticationFilter filter = new JsonObjectAuthenticationFilter(authenticationManager, userDetailsService);
+        filter.setAuthenticationSuccessHandler(authSuccessHandler);
+        filter.setAuthenticationFailureHandler(authFailureHandler);
+        filter.setAuthenticationManager(authenticationManager);
+        filter.setFilterProcessesUrl("/api/auth/login");
+        return filter;
     }
 
     @Bean
-    public JsonObjectAuthenticationFilter authenticationFilter() throws Exception {
-        JsonObjectAuthenticationFilter filter = new JsonObjectAuthenticationFilter();
-        filter.setAuthenticationSuccessHandler(authSuccessHandler);
-        filter.setAuthenticationManager(authenticationManager);
-        filter.setFilterProcessesUrl("/api/cats/login");
-        return filter;
+    CorsConfigurationSource corsConfigurationSource() {
+        CorsConfiguration configuration = new CorsConfiguration();
+        configuration.setAllowedOrigins(List.of("http://localhost:3000"));
+        configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "HEAD", "OPTIONS"));
+        configuration.setAllowedHeaders(List.of("Authorization", "Content-Type"));
+        configuration.setAllowCredentials(true);
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", configuration);
+        return source;
     }
 }

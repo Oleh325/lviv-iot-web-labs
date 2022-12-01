@@ -153,6 +153,12 @@ export const ItemsContainer = styled.div`
         margin: 3rem auto 0 auto;
         position: relative;
     }
+    .search-error {
+        color: #333333;
+        font-size: 2rem;
+        margin: 3rem auto 0 auto;
+        position: relative;
+    }
     .hidden {
         display: none;
     }

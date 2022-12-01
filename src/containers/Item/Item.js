@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { getCatById } from "../../Requests";
+import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 import { ItemContainer,
         ItemContent,
         ItemFooter }
@@ -7,8 +7,8 @@ import { ItemContainer,
 import ItemAddedPopup from "./ItemAddedPopup/ItemAddedPopup";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { cartActions } from "../../store/slices";
+import { useDispatch, useSelector } from "react-redux";
+import { cartActions } from "../../store/slices/cartSlice";
 
 const Item = () => {
     const [selectedOption, setSelectedOption] = useState("");
@@ -16,18 +16,35 @@ const Item = () => {
     const [cat, setCat] = useState({});
     const [popup, setPopup] = useState(<></>);
     const [isShownPopup, setIsShownPopup] = useState(false);
-    const editCat = <button className="edit-cat"><div className="text">Edit</div></button>;
     const dispatch = useDispatch();
+    const axiosPrivate = useAxiosPrivate();
+    const [editCat, setEditCat] = useState(<></>);
+    const auth = useSelector((state) => state.auth);
+
+    useEffect(() => {
+        auth.roles?.find(role => role === "ADMIN")
+        ? setEditCat(<button className="edit-cat"><div className="text">Edit</div></button>)
+        : setEditCat(<></>);
+    }, [auth.roles]);
     
     const id = useParams().id;
 
     useEffect(() => {
+        const getCatById = async (id) => {
+            let cat = await axiosPrivate.get(`http://localhost:8080/api/cats/${id}`).then((response) => {
+                return response.data;
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+            return cat;
+        }
         const getCatAsync = async (id) => {
             const fetchedCat = await getCatById(id);
             setCat(fetchedCat == null ? {} : fetchedCat);
         } 
         getCatAsync(id);
-    }, [id]);
+    }, [id, axiosPrivate]);
 
     useEffect(() => setSelectedOption(cat.options ? cat.options[0] : ""), [cat]);
 

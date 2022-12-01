@@ -1,20 +1,30 @@
 import React, { useEffect, useState } from "react";
 import { CartItemContainer } from "./CartItem.styled";
-import { getCatById } from "../../../Requests";
+import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
 import { useDispatch } from "react-redux";
-import { cartActions } from "../../../store/slices";
+import { cartActions } from "../../../store/slices/cartSlice";
 
 const CartItem = ( { id, quantity, compositeId } ) => {
     const [cartCat, setCartCat] = useState({});
     const dispatch = useDispatch();
+    const axiosPrivate = useAxiosPrivate();
 
     useEffect(() => {
+        const getCatById = async (id) => {
+            let cat = await axiosPrivate.get(`http://localhost:8080/api/cats/${id}`).then((response) => {
+                return response.data;
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+            return cat;
+        }
         const getCartCatAsync = async (id) => {
             const fetchedCat = await getCatById(id);
             setCartCat(fetchedCat == null ? {} : fetchedCat);
         } 
         getCartCatAsync(id);
-    }, [id, compositeId]);
+    }, [id, compositeId, axiosPrivate]);
 
     const removeFromCart = () => {
         console.log(compositeId);

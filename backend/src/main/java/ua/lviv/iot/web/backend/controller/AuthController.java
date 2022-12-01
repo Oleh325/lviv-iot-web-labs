@@ -7,9 +7,12 @@ import org.springframework.web.bind.annotation.*;
 import ua.lviv.iot.web.backend.domain.User;
 import ua.lviv.iot.web.backend.dto.UserDTO;
 import ua.lviv.iot.web.backend.dto.assembler.UserDTOAssembler;
+import ua.lviv.iot.web.backend.exception.UserNotFoundException;
 import ua.lviv.iot.web.backend.service.UserService;
 
-@CrossOrigin(origins = {"http://localhost:8080", "http://localhost:3000"}, maxAge = 4000)
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+
 @RestController
 @RequestMapping("/api/auth")
 @RequiredArgsConstructor
@@ -19,10 +22,16 @@ public class AuthController {
     private final UserDTOAssembler userDTOAssembler;
 
     @PostMapping("/signup")
-    public ResponseEntity<UserDTO> addUser(@RequestBody User user) {
-        User newUser = userService.create(user);
-        UserDTO userDTO = userDTOAssembler.toModel(newUser);
-        return new ResponseEntity<>(userDTO, HttpStatus.CREATED);
+    public ResponseEntity<UserDTO> addUser(@RequestBody User user, HttpServletResponse response) throws IOException {
+        try {
+            String email = userService.findByEmail(user.getEmail()).getEmail();
+            response.getWriter().write("{\"error\": \"User with email " + email + " already exists!\"}");
+            return new ResponseEntity<>(HttpStatus.CONFLICT);
+        } catch (RuntimeException e) {
+            User newUser = userService.create(user);
+            UserDTO userDTO = userDTOAssembler.toModel(newUser);
+            return new ResponseEntity<>(userDTO, HttpStatus.CREATED);
+        }
     }
 
     @PostMapping("/users/{userId}/roles/{roleName}")

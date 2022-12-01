@@ -63,15 +63,25 @@ export const LoginContainer = styled.div`
                     text-decoration: none;
                 }
             }
-            .login-button {
-                background-color: #5555FF;
-                border: none;
-                border-radius: 0.75rem;
-                height: 2.5rem;
-                width: 9rem;
-                color: white;
-                font-weight: 600;
-                cursor: pointer;
+            .footer-right {
+                display: flex;
+                gap: 1rem;
+                align-items: center;
+                .global-error {
+                    color: red;
+                    font-weight: 600;
+                    font-size: 1.15rem;
+                }
+                .login-button {
+                    background-color: #5555FF;
+                    border: none;
+                    border-radius: 0.75rem;
+                    height: 2.5rem;
+                    width: 9rem;
+                    color: white;
+                    font-weight: 600;
+                    cursor: pointer;
+                }
             }
         }
     }

@@ -1,9 +1,19 @@
 import React from "react";
+import { useEffect } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { CatalogItemContainer } from "./CatalogItem.styled";
+import { useSelector } from "react-redux";
 
 const CatalogItem = ( { title, description, price, imagesrc, id, hiddenClassName } ) => {
-    const removeCat = <button className="button-remove">X</button>;
+    const [removeCat, setRemoveCat] = useState(<></>);
+    const auth = useSelector((state) => state.auth);
+
+    useEffect(() => {
+        auth.roles?.find(role => role === "ADMIN")
+        ? setRemoveCat(<button className="button-remove">X</button>)
+        : setRemoveCat(<></>);
+    }, [auth.roles]);
 
     return (
         <CatalogItemContainer className={hiddenClassName}>

@@ -5,7 +5,7 @@ import { Formik, Form } from "formik";
 import CustomInput from "./CustomInput";
 import { checkoutSchema } from "../../../schemas/index";
 import { useDispatch } from "react-redux";
-import { cartActions } from "../../../store/slices";
+import { cartActions } from "../../../store/slices/cartSlice";
 
 const Checkout = () => {
     const navigate = useNavigate();

@@ -63,15 +63,26 @@ export const SignupContainer = styled.div`
                     text-decoration: none;
                 }
             }
-            .signup-button {
-                background-color: #5555FF;
-                border: none;
-                border-radius: 0.75rem;
-                height: 2.5rem;
-                width: 9rem;
-                color: white;
-                font-weight: 600;
-                cursor: pointer;
+            .footer-right {
+                display: flex;
+                gap: 0.5rem;
+                align-items: center;
+                .global-error {
+                    color: red;
+                    font-weight: 600;
+                    font-size: 1rem;
+                    text-align: center;
+                }
+                .signup-button {
+                    background-color: #5555FF;
+                    border: none;
+                    border-radius: 0.75rem;
+                    height: 2.5rem;
+                    width: 9rem;
+                    color: white;
+                    font-weight: 600;
+                    cursor: pointer;
+                }
             }
         }
     }

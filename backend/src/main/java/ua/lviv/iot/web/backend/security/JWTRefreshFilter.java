@@ -3,6 +3,7 @@ package ua.lviv.iot.web.backend.security;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 import org.springframework.stereotype.Component;
@@ -48,15 +49,15 @@ public class JWTRefreshFilter extends BasicAuthenticationFilter {
                                 .verify(token)
                                 .getSubject();
                         String accessToken = jwtUtil.createJWT(email);
-                        response.getWriter().write("{\"token\": \"" + accessToken + "\"}");
+                        response.getWriter().write("{\"accessToken\": \"" + accessToken + "\"}");
                         } catch (Exception e) {
                         throw new RuntimeException(e);
                     }
                 } else {
-                    response.setStatus(401);
+                    response.setStatus(HttpStatus.UNAUTHORIZED.value());
                 }
             } else {
-                response.setStatus(401);
+                response.setStatus(HttpStatus.UNAUTHORIZED.value());
             }
         }
         if (Objects.equals(request.getRequestURI(), "/api/auth/signout")) {
@@ -65,15 +66,15 @@ public class JWTRefreshFilter extends BasicAuthenticationFilter {
                 if (Arrays.stream(cookies).anyMatch(cookie -> Objects.equals(cookie.getName(), "refreshToken"))) {
                     Cookie cookie = new Cookie("refreshToken", null);
                     cookie.setHttpOnly(true);
-                    cookie.setPath("/api/auth/refresh");
+                    cookie.setPath("/api/auth/");
                     cookie.setMaxAge(0);
                     response.addCookie(cookie);
-                    response.setStatus(200);
+                    response.setStatus(HttpStatus.OK.value());
                 } else {
-                    response.setStatus(401);
+                    response.setStatus(HttpStatus.UNAUTHORIZED.value());
                 }
             } else {
-                response.setStatus(401);
+                response.setStatus(HttpStatus.UNAUTHORIZED.value());
             }
         }
         chain.doFilter(request, response);

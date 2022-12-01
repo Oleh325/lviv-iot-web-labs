@@ -1,19 +1,47 @@
-import React from "react";
+import React, { useState } from "react";
+import axios from "../../api/axios";
 import { SignupContainer } from "./Signup.syled";
 import { Formik, Form } from "formik";
 import CustomInput from "../Cart/Checkout/CustomInput";
 import { signupSchema } from "../../schemas/index";
 import { Link, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { authActions } from "../../store/slices/authSlice";
 
 const Signup = () => {
     const navigate = useNavigate();
+    const [error, setError] = useState("");
+    const dispatch = useDispatch();
 
     const onSubmit = async (values, actions) => {
-        console.log(values);
-        // await sendEmail();
-        await new Promise((r) => setTimeout(r, 1000));
-        actions.resetForm();
-        navigate("/");
+        try {
+            const user = values.username;
+            const email = values.email;
+            const password = values.password;
+            await axios.post("/auth/signup",
+                JSON.stringify({ user, email, password }),
+                {
+                    headers: { "Content-Type": "application/json" }
+                }
+            );
+            const response = await axios.post("/auth/login",
+                JSON.stringify({ email, password }),
+                {
+                    headers: { "Content-Type": "application/json" }, 
+                    withCredentials: true
+                });
+            dispatch(authActions.setCredentials({ ...response?.data }));
+            actions.resetForm();
+            navigate("/");
+        } catch (err) {
+            if (!err?.response) {
+                setError("No Server Response");
+            } else if (err.response?.status === 409) {
+                setError(err.response?.data?.error);
+            } else {
+                setError(err?.message);
+            }
+        }
     }
 
     return (
@@ -34,6 +62,7 @@ const Signup = () => {
                         name="username"
                         type="text"
                         placeholder="Username"
+                        autoFocus
                     />
                     <CustomInput
                         name="email"
@@ -56,7 +85,10 @@ const Signup = () => {
                         <div>Already a member?</div>
                         <Link to="/login" className="login">Login</Link>
                     </div>
-                    <button disabled={isSubmitting} type="submit" className="signup-button">Sign Up</button>
+                    <div className="footer-right">
+                        {error !== "" && <div className="global-error">{error}</div>}
+                        <button disabled={isSubmitting} type="submit" className="signup-button">Sign Up</button>
+                    </div>
                 </div>
             </Form>
             )}

@@ -1,19 +1,38 @@
-import React from "react";
+import React, { useState } from "react";
 import { LoginContainer } from "./Login.styled";
 import { Formik, Form } from "formik";
 import CustomInput from "../Cart/Checkout/CustomInput";
 import { loginSchema } from "../../schemas/index";
 import { Link, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { authActions } from "../../store/slices/authSlice";
+import axios from "../../api/axios";
 
 const Login = () => {
     const navigate = useNavigate();
+    const [error, setError] = useState("");
+    const dispatch = useDispatch();
 
     const onSubmit = async (values, actions) => {
-        console.log(values);
-        // await sendEmail();
-        await new Promise((r) => setTimeout(r, 1000));
-        actions.resetForm();
-        navigate("/");
+        try {
+            const email = values.email;
+            const password = values.password;
+            const response = await axios.post("/auth/login",
+                JSON.stringify({ email, password }),
+                {
+                    headers: { "Content-Type": "application/json" }, 
+                    withCredentials: true
+                });
+            dispatch(authActions.setCredentials({ ...response?.data }));
+            actions.resetForm();
+            navigate("/");
+        } catch (err) {
+            if (!err?.response) {
+                setError("No Server Response");
+            } else {
+                setError(err?.response?.data?.error);
+            }
+        }
     }
 
     return (
@@ -32,6 +51,7 @@ const Login = () => {
                         name="email"
                         type="email"
                         placeholder="E-mail"
+                        autoFocus
                     />
                     <CustomInput
                         name="password"
@@ -44,7 +64,10 @@ const Login = () => {
                         <div>Not a member?</div>
                         <Link to="/signup" className="sign-up">Sign Up</Link>
                     </div>
-                    <button disabled={isSubmitting} type="submit" className="login-button">Login</button>
+                    <div className="footer-right">
+                        {error !== "" && <div className="global-error">{error}</div>}
+                        <button disabled={isSubmitting} type="submit" className="login-button">Login</button>
+                    </div>
                 </div>
             </Form>
             )}
