@@ -4,13 +4,15 @@ import { authActions } from "../store/slices/authSlice";
 
 const useRefreshToken = () => {
     const dispatch = useDispatch();
-    const prev = useSelector(state => state.auth);
+    const user = useSelector(state => state.auth.user);
+    const roles = useSelector(state => state.auth.roles);
+    
 
     const refresh = async () => {
         const response = await axios.get("/auth/refresh", {
             withCredentials: true
         });
-        dispatch(authActions.setCredentials({ prev, token: response.data.accessToken }));
+        dispatch(authActions.setCredentials({ user, roles, token: response.data.accessToken }));
         return response.data.accessToken;
     }
 

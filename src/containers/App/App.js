@@ -15,6 +15,7 @@ import Unauthorized from "../Login/Status Components/Unauthorized";
 import RequireAuth from "../Login/RequireAuth";
 
 const App = () => {
+
     return (
         <Routes>
             <Route path="/" element={<LayoutDefault />}>

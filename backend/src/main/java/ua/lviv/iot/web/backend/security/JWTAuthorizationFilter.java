@@ -54,7 +54,7 @@ public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
             JWT.require(Algorithm.HMAC256(secret.getBytes()))
                     .build()
                     .verify(token.replace(TOKEN_PREFIX, ""));
-        } catch (Exception e) {
+        } catch (TokenExpiredException e) {
             response.setContentType("application/json");
             response.getWriter().write("{ \"error\": \"Unauthorized\", \"message\": \"Token has expired!\", " +
                     "\"path\": \"" + request.getRequestURL() + "\" }");

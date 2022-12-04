@@ -15,11 +15,11 @@ const Signup = () => {
 
     const onSubmit = async (values, actions) => {
         try {
-            const user = values.username;
+            const usernameUser = values.username;
             const email = values.email;
             const password = values.password;
             await axios.post("/auth/signup",
-                JSON.stringify({ user, email, password }),
+                JSON.stringify({ usernameUser, email, password }),
                 {
                     headers: { "Content-Type": "application/json" }
                 }

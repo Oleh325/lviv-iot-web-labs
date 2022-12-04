@@ -3,13 +3,15 @@ import { LoginContainer } from "./Login.styled";
 import { Formik, Form } from "formik";
 import CustomInput from "../Cart/Checkout/CustomInput";
 import { loginSchema } from "../../schemas/index";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { authActions } from "../../store/slices/authSlice";
 import axios from "../../api/axios";
 
 const Login = () => {
     const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || "/";
     const [error, setError] = useState("");
     const dispatch = useDispatch();
 
@@ -25,7 +27,7 @@ const Login = () => {
                 });
             dispatch(authActions.setCredentials({ ...response?.data }));
             actions.resetForm();
-            navigate("/");
+            navigate(from, { replace: true });
         } catch (err) {
             if (!err?.response) {
                 setError("No Server Response");

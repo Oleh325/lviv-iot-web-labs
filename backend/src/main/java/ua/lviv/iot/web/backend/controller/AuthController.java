@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.*;
 import ua.lviv.iot.web.backend.domain.User;
 import ua.lviv.iot.web.backend.dto.UserDTO;
 import ua.lviv.iot.web.backend.dto.assembler.UserDTOAssembler;
-import ua.lviv.iot.web.backend.exception.UserNotFoundException;
 import ua.lviv.iot.web.backend.service.UserService;
 
 import javax.servlet.http.HttpServletResponse;

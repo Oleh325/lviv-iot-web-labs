@@ -21,7 +21,7 @@ const useAxiosPrivate = () => {
         );
         const responseIntercept = axiosPrivate.interceptors.response.use(
             response => response,
-            async(error) => {
+            async (error) => {
                 const prevRequest = error?.config;
                 if (error?.response?.data?.message === "Token has expired!" && !prevRequest?.sent) {
                     prevRequest.sent = true;
@@ -29,7 +29,6 @@ const useAxiosPrivate = () => {
                     prevRequest.headers["Authorization"] = `Bearer ${newAccessToken}`;
                     return axiosPrivate(prevRequest);
                 }
-                dispatch(authActions.logOut());
                 return Promise.reject(error);
             }
         );

@@ -56,6 +56,7 @@ const Catalog = () => {
         auth.roles?.find(role => role === "ADMIN")
         ? setAddCat(<button className="add-cat"><div className="text">+</div></button>)
         : setAddCat(<></>);
+        console.log(auth);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
