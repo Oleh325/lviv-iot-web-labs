@@ -54,8 +54,9 @@ const Catalog = () => {
         }
         applyFilters();
         auth.roles?.find(role => role === "ADMIN")
-        ? setAddCat(<button className="add-cat"><div className="text">+</div></button>)
-        : setAddCat(<></>);
+            ? setAddCat(<button className="add-cat"><div className="text">+</div></button>)
+            : setAddCat(<></>);
+
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
@@ -189,6 +190,10 @@ const Catalog = () => {
         return [cats, err];
     }
 
+    const refreshAfterDelete = () => {
+        applyFilters();
+    }
+
     return(
         <CatalogContainer>
             <FiltersContainer>
@@ -213,7 +218,9 @@ const Catalog = () => {
                 { loaderHidden && error !== "" && error !== undefined && <div className="error">{error}</div> }
                 { loaderHidden && searchError !== "" && searchError !== undefined && <div className="search-error">{searchError}</div> }
                 {cats.map(cat => {
-                    return <CatalogItem imagesrc={cat.imagesrc} title={cat.title} description={cat.description} price={cat.price} id={cat.id} key={cat.id} hiddenClassName={cat.hidden ? cat.hidden : ""} />
+                    return <CatalogItem imagesrc={cat.imagesrc} title={cat.title} description={cat.description} 
+                    price={cat.price} id={cat.id} key={cat.id} hiddenClassName={cat.hidden ? cat.hidden : ""}
+                    refreshAfterDelete={refreshAfterDelete} />
                 })}
                 {cats.length !== 0 && addCat}
             </ItemsContainer>
