@@ -26,8 +26,11 @@ const useAxiosPrivate = () => {
                 if (error?.response?.data?.message === "Token has expired!" && !prevRequest?.sent) {
                     prevRequest.sent = true;
                     const newAccessToken = await refresh();
+                    prevRequest.headers = { ...prevRequest.headers };
                     prevRequest.headers["Authorization"] = `Bearer ${newAccessToken}`;
                     return axiosPrivate(prevRequest);
+                } else if (error?.response?.data?.message === "Refresh token has expired!") {
+                    dispatch(authActions.logOut());
                 }
                 return Promise.reject(error);
             }
@@ -37,7 +40,7 @@ const useAxiosPrivate = () => {
             axiosPrivate.interceptors.request.eject(requestIntercept);
             axiosPrivate.interceptors.response.eject(responseIntercept);
         }
-    }, [auth, refresh]);
+    }, [auth, refresh, dispatch]);
 
     return axiosPrivate;
 }

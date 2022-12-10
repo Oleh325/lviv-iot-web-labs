@@ -12,7 +12,7 @@ const useRefreshToken = () => {
         const response = await axios.get("/auth/refresh", {
             withCredentials: true
         });
-        dispatch(authActions.setCredentials({ user, roles, token: response.data.accessToken }));
+        dispatch(authActions.setCredentials({ username: user, roles, accessToken: response.data.accessToken }));
         return response.data.accessToken;
     }
 

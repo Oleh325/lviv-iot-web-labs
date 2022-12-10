@@ -23,7 +23,7 @@ server:
   port: 8080
 
 jwt:
-  expiration: 15000
+  expiration: 600000
   secret: someSecureSecret
   refreshToken:
     expiration: 86400000

@@ -51,7 +51,10 @@ public class JWTRefreshFilter extends BasicAuthenticationFilter {
                         String accessToken = jwtUtil.createJWT(email);
                         response.getWriter().write("{\"accessToken\": \"" + accessToken + "\"}");
                         } catch (Exception e) {
-                        throw new RuntimeException(e);
+                        response.setContentType("application/json");
+                        response.getWriter().write("{ \"error\": \"Unauthorized\", \"message\": \"Refresh token has expired!\", " +
+                                "\"path\": \"" + request.getRequestURL() + "\" }");
+                        response.setStatus(HttpStatus.UNAUTHORIZED.value());
                     }
                 } else {
                     response.setStatus(HttpStatus.UNAUTHORIZED.value());
