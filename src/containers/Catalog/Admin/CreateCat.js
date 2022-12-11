@@ -8,6 +8,7 @@ import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
 
 const CreateCat = () => {
     const [cuteness, setCuteness] = useState(69);
+    const [imagesrc, setImagesrc] = useState("");
     const navigate = useNavigate();
     const axiosPrivate = useAxiosPrivate();
 
@@ -99,8 +100,15 @@ const CreateCat = () => {
                         name="imagesrc"
                         type="text"
                         placeholder="Enter cat image source url"
+                        value={imagesrc}
+                        onChange={e => setImagesrc(e.target.value)}
                     />
                 </div>
+                { imagesrc !== "" &&
+                <div className="image-preview">
+                    <div className="image-preview-text">Image preview: </div>
+                    <img src={imagesrc} alt="cat"></img>
+                </div>}
                 <div className="buttons">
                     <Link to="/catalog" className="back-button"><div>Go back</div></Link>
                     <button disabled={isSubmitting} type="submit" className="continue-button">Create cat</button>

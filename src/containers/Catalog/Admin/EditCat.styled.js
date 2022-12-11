@@ -8,7 +8,7 @@ export const EditCatContainer = styled.div`
     margin: 2rem auto;
     width: 90%;
     min-height: 87vh;
-    form {
+    Form {
         width: 100%;
         display: flex;
         flex-direction: column;

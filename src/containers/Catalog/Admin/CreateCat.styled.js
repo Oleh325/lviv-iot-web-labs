@@ -13,7 +13,20 @@ export const CreateCatContainer = styled.div`
         display: flex;
         flex-direction: column;
         align-items: center;
-        gap: 5rem;
+        gap: 3rem;
+        .image-preview {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+            .image-preview-text {
+                font-size: 2rem;
+                font-weight: 600;
+            }
+            img {
+                width: 40%;
+            }
+        }
     }
     label {
         font-size: 2rem;
