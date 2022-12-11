@@ -12,11 +12,10 @@ const Checkout = () => {
     const dispatch = useDispatch();
 
     const onSubmit = async (values, actions) => {
-        console.log(values);
         // await sendEmail();
         await new Promise((r) => setTimeout(r, 1000));
         actions.resetForm();
-        dispatch(cartActions.clearCart())
+        dispatch(cartActions.clearCart());
         navigate("/cart/success");
     }
 

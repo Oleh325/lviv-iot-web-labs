@@ -13,6 +13,7 @@ import { FiltersBorder, Filters } from "./Catalog.styled";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { filtersActions } from "../../store/slices/filtersSlice";
+import { useNavigate } from "react-router-dom";
 
 const Catalog = () => {
     const [isFiltersOn, setIsFiltersOn] = useState(false);
@@ -26,6 +27,7 @@ const Catalog = () => {
     const dispatch = useDispatch();
     const axiosPrivate = useAxiosPrivate();
     const [addCat, setAddCat] = useState(<></>);
+    const navigate = useNavigate();
 
     const onColorChange = (color) => {
         dispatch(filtersActions.addFilter({
@@ -54,7 +56,7 @@ const Catalog = () => {
         }
         applyFilters();
         auth.roles?.find(role => role === "ADMIN")
-            ? setAddCat(<button className="add-cat"><div className="text">+</div></button>)
+            ? setAddCat(<button className="add-cat" onClick={() => navigate("/addcat")}><div className="text">+</div></button>)
             : setAddCat(<></>);
 
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -144,7 +146,7 @@ const Catalog = () => {
         if (filters === "") {
             return getCats();
         } else {
-            let cats = await axiosPrivate.get(`http://localhost:8080/api/cats/filters?${filters}`)
+            let cats = await axiosPrivate.get(`/cats/filters?${filters}`)
             .then((response) => {
                 return response.data._embedded?.cats?.map(cat => {
                     cat.hidden = "";
@@ -178,7 +180,7 @@ const Catalog = () => {
 
     const getCats = async () => {
         let err = "";
-        let cats = await axiosPrivate.get(`http://localhost:8080/api/cats/`).then((response) => {
+        let cats = await axiosPrivate.get(`/cats/`).then((response) => {
             return response.data._embedded?.cats?.map(cat => {
                 cat.hidden = "";
                 return cat;

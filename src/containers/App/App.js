@@ -13,6 +13,8 @@ import Missing from "../Login/Status Components/Missing";
 import { Routes, Route } from "react-router-dom";
 import Unauthorized from "../Login/Status Components/Unauthorized";
 import RequireAuth from "../Login/RequireAuth";
+import CreateCat from "../Catalog/Admin/CreateCat";
+import EditCat from "../Catalog/Admin/EditCat";
 
 const App = () => {
 
@@ -27,7 +29,10 @@ const App = () => {
                     <Route exact path="/cart/success" element={<Success />} />  
                     <Route path="/item/:id" element={ <Item  />} /> 
                 </Route>
-                {/* addcat and others to ADMIN */}
+                <Route element={<RequireAuth allowedRoles={["ADMIN"]}/>}>
+                    <Route exact path="/addcat" element={<CreateCat />} />
+                    <Route exact path="/editcat/:id" element={<EditCat />} />            
+                </Route>
             </Route>
 
             <Route path="/" element={<Layout />}>

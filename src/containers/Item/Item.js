@@ -5,7 +5,7 @@ import { ItemContainer,
         ItemFooter }
         from "./Item.styled";
 import ItemAddedPopup from "./ItemAddedPopup/ItemAddedPopup";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { cartActions } from "../../store/slices/cartSlice";
@@ -20,18 +20,19 @@ const Item = () => {
     const axiosPrivate = useAxiosPrivate();
     const [editCat, setEditCat] = useState(<></>);
     const auth = useSelector((state) => state.auth);
+    const navigate = useNavigate();
 
-    useEffect(() => {
-        auth.roles?.find(role => role === "ADMIN")
-        ? setEditCat(<button className="edit-cat"><div className="text">Edit</div></button>)
-        : setEditCat(<></>);
-    }, [auth.roles]);
-    
     const id = useParams().id;
 
     useEffect(() => {
+        auth.roles?.find(role => role === "ADMIN")
+        ? setEditCat(<button className="edit-cat" onClick={() => navigate(`/editcat/${id}`)}><div className="text">Edit</div></button>)
+        : setEditCat(<></>);
+    }, [auth.roles, navigate, id]);
+
+    useEffect(() => {
         const getCatById = async (id) => {
-            let cat = await axiosPrivate.get(`http://localhost:8080/api/cats/${id}`).then((response) => {
+            let cat = await axiosPrivate.get(`/cats/${id}`).then((response) => {
                 return response.data;
             })
             .catch((error) => {
