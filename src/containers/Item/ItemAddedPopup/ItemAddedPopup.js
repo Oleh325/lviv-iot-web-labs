@@ -7,7 +7,7 @@ const ItemAddedPopup = ( { option, itemName, isShown } ) => {
     return(
         <ItemAddedPopupContainer className={isShown ? "shown" : ""} >
             <div className="message">{option + " " + itemName} was added to cart successfully!</div>
-            <Link to="/cart" className="link">Cart</Link>
+            <Link to="/cart" className={"link " + (isShown ? "shown" : "")}>Cart</Link>
         </ItemAddedPopupContainer>
     );
 }

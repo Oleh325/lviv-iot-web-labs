@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { getCatById } from "../../Requests";
+import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 import { ItemContainer,
         ItemContent,
         ItemFooter }
         from "./Item.styled";
 import ItemAddedPopup from "./ItemAddedPopup/ItemAddedPopup";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { cartActions } from "../../store/reducers";
+import { useDispatch, useSelector } from "react-redux";
+import { cartActions } from "../../store/slices/cartSlice";
 
 const Item = () => {
     const [selectedOption, setSelectedOption] = useState("");
@@ -17,16 +17,35 @@ const Item = () => {
     const [popup, setPopup] = useState(<></>);
     const [isShownPopup, setIsShownPopup] = useState(false);
     const dispatch = useDispatch();
-    
+    const axiosPrivate = useAxiosPrivate();
+    const [editCat, setEditCat] = useState(<></>);
+    const auth = useSelector((state) => state.auth);
+    const navigate = useNavigate();
+
     const id = useParams().id;
 
     useEffect(() => {
+        auth.roles?.find(role => role === "ADMIN")
+        ? setEditCat(<button className="edit-cat" onClick={() => navigate(`/editcat/${id}`)}><div className="text">Edit</div></button>)
+        : setEditCat(<></>);
+    }, [auth.roles, navigate, id]);
+
+    useEffect(() => {
+        const getCatById = async (id) => {
+            let cat = await axiosPrivate.get(`/cats/${id}`).then((response) => {
+                return response.data;
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+            return cat;
+        }
         const getCatAsync = async (id) => {
             const fetchedCat = await getCatById(id);
             setCat(fetchedCat == null ? {} : fetchedCat);
         } 
         getCatAsync(id);
-    }, [id]);
+    }, [id, axiosPrivate]);
 
     useEffect(() => setSelectedOption(cat.options ? cat.options[0] : ""), [cat]);
 
@@ -79,6 +98,7 @@ const Item = () => {
                     </div>
                 </div>
             </ItemContent>
+            {editCat}
             <ItemFooter>
                 <div className="price">Price: {cat.price}$</div>
                 <div className="buttons">

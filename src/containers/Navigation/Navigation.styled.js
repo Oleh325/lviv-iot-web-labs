@@ -1,8 +1,9 @@
 import styled from 'styled-components';
 
 export const NavContainer = styled.div`
-    margin: 0 auto;
-    height: 100%;
+    position: absolute;
+    left: 25rem;
+    height: 4rem;
     .selected {
         background-color: lightgray;
         font-weight: bold;

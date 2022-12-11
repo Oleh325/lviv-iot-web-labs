@@ -5,6 +5,8 @@ export const CatalogItemContainer = styled.div`
     border-radius: 1rem;
     height: 25rem;
     width: 20%;
+    margin-left: 3.7rem;
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -39,7 +41,7 @@ export const CatalogItemContainer = styled.div`
         color: #444444;
     }
     .price {
-        margin-right: 2rem;
+        margin-right: 0rem;
         color: #333333;
         font-weight: 600;
     }
@@ -59,5 +61,19 @@ export const CatalogItemContainer = styled.div`
             font-size: 1rem;
             text-align: center;
         }
+    }
+    button {
+        position: absolute;
+        bottom: 3.5%;
+        right: 4%;
+        height: 1.5rem;
+        width: 1.5rem;
+        background-color: red;
+        border: none;
+        border-radius: 0.25rem;
+        cursor: pointer;
+        color: white;
+        font-weight: 600;
+        text-align: center;
     }
 `

@@ -8,7 +8,7 @@ export const SearchbarContainer = styled.div`
     align-items: center;
     border: 0.0625rem solid black;
     border-radius: 0.5rem;
-    margin-right: 2rem;
+    margin-right: 1.5rem;
     padding-left: 0.5rem;
     button {
         height: 100%;
@@ -18,6 +18,7 @@ export const SearchbarContainer = styled.div`
         padding: 0;
     }
     img {
+        height: 80%;
         padding-top: 0.2rem;
         padding-left: 0;
     }

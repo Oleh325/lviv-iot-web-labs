@@ -36,11 +36,13 @@ const Home = () => {
                     <Tile image={cat1} title="Tile 1 heading" description={tileDesc} id={1} />
                     <Tile image={cat2} title="Tile 2 heading" description={tileDesc} id={2} />
                     <Tile image={cat3} title="Tile 3 heading" description={tileDesc} id={3} />
-                    <Tile image={cat3} title="Tile 4 heading" description={tileDesc} id={4} className={hidden} />
-                    <Tile image={cat2} title="Tile 5 heading" description={tileDesc} id={5} className={hidden} />
-                    <Tile image={cat1} title="Tile 6 heading" description={tileDesc} id={6} className={hidden} />
+                    <Tile image={cat3} title="Tile 4 heading" description={tileDesc} id={4} className={"tile " + hidden} />
+                    <Tile image={cat2} title="Tile 5 heading" description={tileDesc} id={5} className={"tile " + hidden} />
+                    <Tile image={cat1} title="Tile 6 heading" description={tileDesc} id={6} className={"tile " + hidden} />
                 </Tiles>
-                <button onClick={() => showOrHide()}>{buttonText}</button>
+                <div className="hider">
+                    <button onClick={() => showOrHide()}>{buttonText}</button>
+                </div>
             </ContentCats>
         </HomeContainer>
     );

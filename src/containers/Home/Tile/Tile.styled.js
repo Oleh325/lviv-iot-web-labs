@@ -18,7 +18,6 @@ export const TileContainer = styled.div`
     }
     .tile-description {
         color: #444444;
-        font-size: 1.5ren;
     }
 
 `

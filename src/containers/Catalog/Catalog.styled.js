@@ -68,14 +68,31 @@ export const FiltersBorder = styled.div`
 `
 
 export const ItemsContainer = styled.div`
-    margin-left: 4.6rem;
     display: flex;
     align-items: center;
-    width: 100%;
     justify-content: flex-start;
-    gap: 4.6rem;
     row-gap: 2rem;
     flex-wrap: wrap;
+    width: 100%;
+    .add-cat {
+        border: 0.1rem solid darkgray;
+        border-radius: 1rem;
+        height: 25rem;
+        width: 20%;
+        margin-left: 3.7rem;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 0.6rem;
+        cursor: pointer;
+        background: none;
+        .text {
+            color: darkgray;
+            font-size: 10rem;
+        }
+    }
     .loader, .loader:before, .loader:after {
         border-radius: 50%;
         width: 2.5em;
@@ -129,6 +146,18 @@ export const ItemsContainer = styled.div`
         40% {
             box-shadow: 0 2.5em 0 0;
         }
+    }
+    .error {
+        color: red;
+        font-size: 2rem;
+        margin: 3rem auto 0 auto;
+        position: relative;
+    }
+    .search-error {
+        color: #333333;
+        font-size: 2rem;
+        margin: 3rem auto 0 auto;
+        position: relative;
     }
     .hidden {
         display: none;

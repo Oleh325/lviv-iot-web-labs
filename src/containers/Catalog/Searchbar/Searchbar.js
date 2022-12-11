@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import search_icon from "../../../images/search_icon.png";
-import { searchActions } from "../../../store/reducers";
+import { searchActions } from "../../../store/slices/searchSlice";
 import { SearchbarContainer } from "./Searchbar.styled";
 
 const Searchbar = ( { hiddenClassName } ) => {

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const HomeContainer = styled.div`
-    padding: 13rem 0 5rem 0;
+    padding: 13rem 0 0 0;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -49,16 +49,28 @@ export const ContentCats = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 4rem;
+    .hider {
+        padding: 2rem 0 5rem 0;
+        display: flex;
+        justify-content: center;
+        background: white;
+        width: 100%;
+    }
 `
 
 export const Tiles = styled.section`
     width: 90%;
     display: flex;
-    gap: 8rem;
+    gap: 6rem;
     justify-content: space-between;
     flex-wrap: wrap;
+    .tile {
+        height: 27.25rem;
+        z-index: -1;
+        transition: height 1s;
+    }
     .hidden {
-        display: none;
+        height: 0rem;
+        overflow: hidden;
     }
 `

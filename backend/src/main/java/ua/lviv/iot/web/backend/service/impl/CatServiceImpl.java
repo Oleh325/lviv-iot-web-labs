@@ -1,6 +1,6 @@
 package ua.lviv.iot.web.backend.service.impl;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import ua.lviv.iot.web.backend.domain.Cat;
 import ua.lviv.iot.web.backend.exception.CatNotFoundException;
@@ -13,10 +13,10 @@ import java.util.List;
 import java.util.Set;
 
 @Service
+@RequiredArgsConstructor
 public class CatServiceImpl implements CatService {
 
-    @Autowired
-    private CatRepository catRepository;
+    private final CatRepository catRepository;
 
     public List<Cat> findAll() {
         List<Cat> cats = catRepository.findAll();
@@ -25,7 +25,7 @@ public class CatServiceImpl implements CatService {
                 cat.setImagesrc("https://cataas.com/cat");
             }
         }
-        return catRepository.findAll();
+        return cats;
     }
 
     public List<Cat> findWithFilter(String cuteness, String color, String weight) {
@@ -88,14 +88,14 @@ public class CatServiceImpl implements CatService {
     public void update(Integer id, Cat uCat) {
         Cat cat = catRepository.findById(id)
                 .orElseThrow(() -> new CatNotFoundException(id));
-        cat.setTitle(cat.getTitle());
-        cat.setDescription(cat.getDescription());
-        cat.setCuteness(cat.getCuteness());
-        cat.setWeight(cat.getWeight());
-        cat.setPrice(cat.getPrice());
-        cat.setColor(cat.getColor());
-        cat.setOptions(cat.getOptions());
-        cat.setImagesrc(cat.getImagesrc());
+        cat.setTitle(uCat.getTitle());
+        cat.setDescription(uCat.getDescription());
+        cat.setCuteness(uCat.getCuteness());
+        cat.setWeight(uCat.getWeight());
+        cat.setPrice(uCat.getPrice());
+        cat.setColor(uCat.getColor());
+        cat.setOptions(uCat.getOptions());
+        cat.setImagesrc(uCat.getImagesrc());
         catRepository.save(cat);
     }
 

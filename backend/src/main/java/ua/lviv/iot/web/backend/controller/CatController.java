@@ -12,7 +12,6 @@ import ua.lviv.iot.web.backend.service.CatService;
 
 import java.util.List;
 
-@CrossOrigin(origins = {"http://localhost:8080", "http://localhost:3000"}, maxAge = 4000)
 @RestController
 @RequestMapping("/api/cats")
 public class CatController {

@@ -17,6 +17,8 @@ export const ItemAddedPopupContainer = styled.div`
     align-items: center;
     justify-content: center;
     gap: 1rem;
+    cursor: default;
+    pointer-events: none;
     .message {
         color: #333333;
         font-weight: 600;
@@ -32,6 +34,10 @@ export const ItemAddedPopupContainer = styled.div`
         text-align: center;
         background-color: white;
         color: #333333;
+        cursor: default;
+    }
+    .shown {
         cursor: pointer;
+        pointer-events: auto;
     }
 `

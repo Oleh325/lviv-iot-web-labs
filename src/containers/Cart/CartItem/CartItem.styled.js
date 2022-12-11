@@ -37,12 +37,12 @@ export const CartItemContainer = styled.div`
     .right-content {
         display: flex;
         align-items: center;
-        gap: 6rem;
+        gap: 4rem;
         height: 100%;
         margin-right: 2rem;
         .amount-controls {
             display: flex;
-            gap: 2rem;
+            gap: 1rem;
             align-items: center;
             button {
                 height: 3rem;
@@ -58,12 +58,16 @@ export const CartItemContainer = styled.div`
                 font-size: 2rem;
                 font-weight: 600;
                 color: #333333;
+                width: 4.125rem;
+                text-align: center;
             }
         }
         .price {
             font-size: 2rem;
             font-weight: 600;
             color: black;
+            width: 11rem;
+            text-align: center;
         }
         .remove-button {
             height: 3rem;
