@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const CatalogItemContainer = styled.div`
     border: 0.1rem solid black;
     border-radius: 1rem;
-    height: 25rem;
+    height: 25.5rem;
     width: 20%;
     margin-left: 3.7rem;
     position: relative;
@@ -31,8 +31,14 @@ export const CatalogItemContainer = styled.div`
     }
     .description {
         color: #444444;
+        min-height: 3.75rem;
+        max-height: 3.75rem;
+        overflow-x: hidden;
+        text-align: center;
+        width: 100%;
     }
     .price-content {
+        margin-top: 0.5rem;
         display: flex;
         width: 100%;
         justify-content: space-between;

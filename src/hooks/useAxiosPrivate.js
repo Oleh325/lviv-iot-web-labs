@@ -23,13 +23,15 @@ const useAxiosPrivate = () => {
             response => response,
             async (error) => {
                 const prevRequest = error?.config;
+                console.log(error);
                 if (error?.response?.data?.message === "Token has expired!" && !prevRequest?.sent) {
                     prevRequest.sent = true;
                     const newAccessToken = await refresh();
                     prevRequest.headers = { ...prevRequest.headers };
                     prevRequest.headers["Authorization"] = `Bearer ${newAccessToken}`;
                     return axiosPrivate(prevRequest);
-                } else if (error?.response?.data?.message === "Refresh token has expired!") {
+                } else if (error?.response?.data?.message === "Refresh token has expired!" ||
+                           error?.response?.data?.message === "There's no refresh token!") {
                     dispatch(authActions.logOut());
                 }
                 return Promise.reject(error);

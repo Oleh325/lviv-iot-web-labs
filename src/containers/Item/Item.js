@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 import { ItemContainer,
         ItemContent,
+        ItemEmpty,
         ItemFooter }
         from "./Item.styled";
 import ItemAddedPopup from "./ItemAddedPopup/ItemAddedPopup";
@@ -16,6 +17,7 @@ const Item = () => {
     const [cat, setCat] = useState({});
     const [popup, setPopup] = useState(<></>);
     const [isShownPopup, setIsShownPopup] = useState(false);
+    const [isCatLoaded, setIsCatLoaded] = useState(true);
     const dispatch = useDispatch();
     const axiosPrivate = useAxiosPrivate();
     const [editCat, setEditCat] = useState(<></>);
@@ -43,6 +45,7 @@ const Item = () => {
         const getCatAsync = async (id) => {
             const fetchedCat = await getCatById(id);
             setCat(fetchedCat == null ? {} : fetchedCat);
+            setIsCatLoaded(fetchedCat == null ? false : true);
         } 
         getCatAsync(id);
     }, [id, axiosPrivate]);
@@ -78,6 +81,7 @@ const Item = () => {
     return(
         <ItemContainer>
             {popup}
+            {isCatLoaded &&
             <ItemContent>
                 <img src={cat.imagesrc} alt=""></img>
                 <div className="content-specs">
@@ -97,15 +101,21 @@ const Item = () => {
                         <div>Color: {cat.color}</div>
                     </div>
                 </div>
-            </ItemContent>
+            </ItemContent>}
             {editCat}
+            {isCatLoaded &&
             <ItemFooter>
                 <div className="price">Price: {cat.price}$</div>
                 <div className="buttons">
                     <Link to="/catalog" className="back-button"><div>Go back</div></Link>
                     <button className="addtocart-button" onClick={addToCart}>Add to cart</button>
                 </div>
-            </ItemFooter>
+            </ItemFooter>}
+            {!isCatLoaded &&
+            <ItemEmpty>
+                <div className="empty-title">Item not found!</div>
+                <Link to="/catalog" className="back-button"><div>Catalog</div></Link>
+            </ItemEmpty>}
         </ItemContainer>
     );
 }

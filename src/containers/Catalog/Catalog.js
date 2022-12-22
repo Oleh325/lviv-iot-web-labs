@@ -107,7 +107,7 @@ const Catalog = () => {
             weight = filtersList.find((filter) => filter.name === "weight").filter;
         }
         const [fetchedCats, err] = await getCatsWithFilters(cuteness, color, weight);
-        setError(err);
+        setError(!err?.response ? "No Server Response" : err);
         setCats(fetchedCats === undefined || fetchedCats == null ? [] : fetchedCats?.map(cat => {
             if (cat.title.search(input) !== -1 || input === "" || input === null) {
                 cat.hidden = "";
@@ -166,7 +166,7 @@ const Catalog = () => {
         setCats([]);
         setLoaderHidden(false);
         const [fetchedCats, err] = await getCats();
-        setError(err);
+        setError(!err?.response ? "No Server Response" : err);
         setCats(fetchedCats === undefined || fetchedCats == null ? [] : fetchedCats?.map(cat => {
             if (cat.title.search(input) !== -1 || input === "" || input === null) {
                 cat.hidden = "";

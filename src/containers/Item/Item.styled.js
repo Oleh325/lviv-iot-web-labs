@@ -75,6 +75,9 @@ export const ItemContent = styled.div`
     .description {
         font-size: 1.5rem;
         color: #444444;
+        max-height: 11.45rem;
+        min-height: 11.45rem;
+        overflow-x: hidden;
     }
     .specs {
         display: flex;
@@ -116,6 +119,35 @@ export const ItemFooter = styled.div`
         background: #424242;
         color: white;      
         border: none;
+        border-radius: 0.75rem; 
+        font-weight: 600;
+        font-size: 1rem;
+        cursor: pointer; 
+    }
+`
+
+export const ItemEmpty = styled.div`
+    display: flex;
+    flex-direction: column;
+    min-height: 90vh;
+    align-items: center;
+    justify-content: center;
+    gap: 10rem;
+    .empty-title {
+        font-size: 4rem;
+        font-weight: 600;
+        color: #333333;
+    }
+    .back-button {
+        height: 3rem;
+        width: 8rem;
+        background: #424242;
+        color: white;      
+        border: none;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         border-radius: 0.75rem; 
         font-weight: 600;
         font-size: 1rem;

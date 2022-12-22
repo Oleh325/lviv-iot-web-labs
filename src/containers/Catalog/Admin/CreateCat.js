@@ -13,15 +13,16 @@ const CreateCat = () => {
     const axiosPrivate = useAxiosPrivate();
 
     const onSubmit = async (values, actions) => {
+        console.log(values.imagesrc);
         await axiosPrivate.post("/cats/", {
             title: values.title,
             description: values.description,
-            cuteness: values.cuteness,
+            cuteness,
             weight: values.weight,
             price: values.price,
             color: values.color,
             options: values.options,
-            imagesrc: values.imagesrc
+            imagesrc
         });
         actions.resetForm();
         navigate("/catalog");
@@ -61,8 +62,8 @@ const CreateCat = () => {
                         type="text"
                         placeholder="Enter cat description"
                     />
-                    <label for="cuteness">Cuteness</label>
-                    <div class="slidecontainer">
+                    <label htmlFor="cuteness">Cuteness</label>
+                    <div className="slidecontainer">
                         <input type="range" min="0" max="100" value={cuteness} className="create__input-cuteness" name="cuteness" onChange={handleCutenessChange} />
                         <div className="slidertext">{cuteness}%</div>
                     </div>

@@ -27,7 +27,6 @@ const CartItem = ( { id, quantity, compositeId } ) => {
     }, [id, compositeId, axiosPrivate]);
 
     const removeFromCart = () => {
-        console.log(compositeId);
         dispatch(cartActions.removeItemFromCart(compositeId));
     }
 

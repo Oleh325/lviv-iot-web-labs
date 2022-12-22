@@ -57,9 +57,15 @@ public class JWTRefreshFilter extends BasicAuthenticationFilter {
                         response.setStatus(HttpStatus.UNAUTHORIZED.value());
                     }
                 } else {
+                    response.setContentType("application/json");
+                    response.getWriter().write("{ \"error\": \"Unauthorized\", \"message\": \"There's no refresh token!\", " +
+                            "\"path\": \"" + request.getRequestURL() + "\" }");
                     response.setStatus(HttpStatus.UNAUTHORIZED.value());
                 }
             } else {
+                response.setContentType("application/json");
+                response.getWriter().write("{ \"error\": \"Unauthorized\", \"message\": \"There's no refresh token!\", " +
+                        "\"path\": \"" + request.getRequestURL() + "\" }");
                 response.setStatus(HttpStatus.UNAUTHORIZED.value());
             }
         }

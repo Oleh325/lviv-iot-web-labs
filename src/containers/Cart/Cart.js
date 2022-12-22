@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { CartContainer, CartTitle, ItemsContainer, Total } from "../Cart/Cart.styled";
 import CartItem from "./CartItem/CartItem";
 import { Link } from "react-router-dom";
@@ -6,15 +6,10 @@ import { useSelector } from "react-redux";
 
 const Cart = () => {
     const items = useSelector((state) => state.cart.itemsList);
-    const [empty, setEmpty] = useState(true);
-    const [price, setPrice] = useState(0);
-
-    useEffect(() => {
-        setEmpty(items.length === 0 ? true : false);
-        setPrice(items.length === 0 ? 0 : items.reduce((accumulator, currentItem) => {
-            return accumulator + (currentItem.price * currentItem.quantity);
-        }, 0));
-    }, [items]);
+    const empty = items.length === 0 ? true : false
+    const price = items.length === 0 ? 0 : items.reduce((accumulator, currentItem) => {
+        return accumulator + (currentItem.price * currentItem.quantity);
+    }, 0);
 
     return(
         <CartContainer>
