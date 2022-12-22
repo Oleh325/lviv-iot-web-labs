@@ -15,21 +15,19 @@ export const CartItemContainer = styled.div`
         height: 100%;
         img {
             height: 100%;
-            width: 10rem;
+            width: 12rem;
             overflow: hidden;
             border-radius: 0.75rem 0 0 0.75rem;
         }
         .left-text {
-            display: flex;
-            flex-direction: column;
             gap: 0.5rem;
             .title {
-                color: #333333;
+                color: var(--darkgray);
                 font-weight: 600;
                 font-size: 3rem;
             }
             .option {
-                color: #333333;
+                color: var(--darkgray);
                 font-size: 1.2rem;
             }
         }   
@@ -54,10 +52,13 @@ export const CartItemContainer = styled.div`
                 font-size: 1.5rem;
                 cursor: pointer;
             }
+            button:hover {
+                background: var(--whitegray);
+            }
             .amount-content {
                 font-size: 2rem;
                 font-weight: 600;
-                color: #333333;
+                color: var(--darkgray);
                 width: 4.125rem;
                 text-align: center;
             }
@@ -79,6 +80,9 @@ export const CartItemContainer = styled.div`
             font-weight: 600;
             font-size: 1rem;
             cursor: pointer;
+        }
+        .remove-button:hover {
+            background: var(--darkred);
         }
     }
 `

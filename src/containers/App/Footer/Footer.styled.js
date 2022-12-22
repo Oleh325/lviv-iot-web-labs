@@ -5,8 +5,6 @@ export const FooterContainer = styled.div`
     width: 100%;
     border: 0.0625rem solid black;
     background: white;
-    display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: space-around;
 `
@@ -20,19 +18,17 @@ export const FooterContent = styled.div`
 
 export const FooterText = styled.div`
     width: 30%;
-    display: flex;
-    flex-direction: column;
     gap: 1rem;
 `
 
 export const FooterTitle = styled.div`
     font-size: 2rem;
     font-weight: 600;
-    color: #333333;
+    color: var(--darkgray);
 `
 
 export const FooterDescription = styled.div`
-    color: #444444;
+    color: var(--lightgray);
 `
 
 export const LogoPaw = styled.img`
@@ -44,6 +40,12 @@ export const FooterLogos = styled.div`
     width: 15%;
     display: flex;
     gap: 0.5rem;
+    img {
+        opacity: 95%;
+    }
+    img:hover {
+        opacity: 100%;
+    }
 `
 
 export const FooterSeparator = styled.div`
@@ -54,5 +56,5 @@ export const FooterSeparator = styled.div`
 
 export const Copyrights = styled.div`
     font-size: 1rem;
-    color: #444444;
+    color: var(--lightgray);
 `

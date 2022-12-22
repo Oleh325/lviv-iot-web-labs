@@ -13,6 +13,18 @@
     src: url("./fonts/SourceSansPro-Regular.ttf");
 }
 
+:root {
+    --whitegray: #EEEEEE;
+    --lightgray: #444444;
+    --darkgray: #333333;
+    --selected-lightgray: #CCCCCC;
+    --bluebutton: #5555FF;
+    --bluebuttonhover: #4E4EEB;
+    --lightblue: #1779BA;
+    --darkblue: #0D4366;
+    --darkred: #E40000;
+}
+
 body {
     margin: 0;
     overflow-x: hidden;
@@ -33,4 +45,49 @@ code {
 
 .hidden {
     display: none;
+}
+
+.flex-column {
+    display: flex;
+    flex-direction: column;
+}
+
+.button-white {
+    height: 3rem;
+    width: 8rem;
+    background: none;
+    color: var(--lightgray);      
+    border: 0.0625rem solid var(--lightgray);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.75rem; 
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer; 
+}
+
+.button-white:hover {
+    background: var(--whitegray);
+}
+
+.button-gray {
+    height: 3rem;
+    width: 8rem;
+    background: var(--lightgray);
+    color: white;      
+    border: none;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.75rem; 
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer; 
+}
+
+.button-gray:hover {
+    background: var(--darkgray);
 }

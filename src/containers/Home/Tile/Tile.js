@@ -3,7 +3,7 @@ import { TileContainer } from "./Tile.styled";
 
 const Tile = ( { image, title, description, id, className="" } ) => {
     return (
-        <TileContainer className={className}>
+        <TileContainer className={className + " flex-column"}>
             <img src={image} alt={`cat${id}`} className="cat"></img>
             <div className="tile-title">{title}</div>
             <div className="tile-description">{description}</div>

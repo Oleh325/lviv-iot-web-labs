@@ -23,9 +23,9 @@ const Footer = () => {
     }
 
     return(
-        <FooterContainer>
+        <FooterContainer className="flex-column">
             <FooterContent bgImage={logo} >
-                <FooterText>
+                <FooterText className="flex-column">
                     <FooterTitle>Branding stuff</FooterTitle>
                     <FooterDescription>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc maximus, nulla ut commodo</FooterDescription>
                 </FooterText>

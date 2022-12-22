@@ -12,9 +12,9 @@ const Cart = () => {
     }, 0);
 
     return(
-        <CartContainer>
+        <CartContainer className="flex-column">
             <CartTitle>Shopping Cart</CartTitle>
-            <ItemsContainer>
+            <ItemsContainer className="flex-column">
                 { empty && <div className="empty">The cart is empty!</div>}
                 { !empty && items.map(item => {
                     return <CartItem id={item.id} quantity={item.quantity} compositeId={item.compositeId} key={item.compositeId} />
@@ -25,8 +25,8 @@ const Cart = () => {
                 </Total>}
             </ItemsContainer>
             <div className="buttons">
-                <Link to="/catalog" className="back-button"><div>Back to Catalog</div></Link>
-                <Link to={empty ? "/cart" : "/cart/checkout"} className="checkout-button">Continue</Link>
+                <Link to="/catalog" className="button-white"><div>Back to Catalog</div></Link>
+                <Link to={empty ? "/cart" : "/cart/checkout"} className="button-gray">Continue</Link>
             </div>
         </CartContainer>
     );

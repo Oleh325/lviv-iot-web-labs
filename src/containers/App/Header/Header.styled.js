@@ -18,7 +18,7 @@ export const HeaderContainer = styled.div`
             justify-self: left;
         }
         .username {
-            color: #333333;
+            color: var(--darkgray);
             font-size: 1.4rem;
         }
         .log-out-button {
@@ -29,6 +29,9 @@ export const HeaderContainer = styled.div`
             height: 2rem;
             width: 6rem;
             cursor: pointer;
+        }
+        .log-out-button:hover {
+            background: var(--whitegray);
         }
     }
     .hidden {

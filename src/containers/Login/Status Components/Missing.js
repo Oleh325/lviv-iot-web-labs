@@ -8,9 +8,9 @@ const Missing = () => {
     const goBack = () => navigate(-1);
 
     return (
-    <MissingContainer>
+    <MissingContainer className="flex-column">
         <div className="error-not-found">404 Not Found!</div>
-        <button className="go-back-button" onClick={goBack}>Go back</button>
+        <button className="go-back-button button-gray" onClick={goBack}>Go back</button>
     </MissingContainer>
     )
 }

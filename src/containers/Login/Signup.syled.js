@@ -6,8 +6,6 @@ export const SignupContainer = styled.div`
     align-items: center;
     justify-content: center;
     .form {
-        display: flex;
-        flex-direction: column;
         gap: 3rem;
         width: 40%;
         height: 70%;
@@ -18,13 +16,9 @@ export const SignupContainer = styled.div`
             font-size: 2rem;
         }
         .inputs {
-            display: flex;
-            flex-direction: column;
             gap: 0.2rem;
             .custom-input {
                 min-height: 4.2rem;
-                display: flex;
-                flex-direction: column;
                 gap: 0.2rem;
                 width: 100%;
                 label {
@@ -34,12 +28,12 @@ export const SignupContainer = styled.div`
                     height: 2.5rem;
                     font-size: 1.2rem;
                     border: none;
-                    border-bottom: 0.1rem solid #1779BA;
+                    border-bottom: 0.1rem solid var(--lightblue);
                     padding-left: 0.5rem;
                 }
                 input:focus {
                     outline: none;
-                    border-bottom: 0.1rem solid #0D4366;
+                    border-bottom: 0.1rem solid var(--darkblue);
                 }
                 .input-error {
                     border: none;
@@ -74,7 +68,7 @@ export const SignupContainer = styled.div`
                     text-align: center;
                 }
                 .signup-button {
-                    background-color: #5555FF;
+                    background-color: var(--bluebutton);
                     border: none;
                     border-radius: 0.75rem;
                     height: 2.5rem;
@@ -82,6 +76,9 @@ export const SignupContainer = styled.div`
                     color: white;
                     font-weight: 600;
                     cursor: pointer;
+                }
+                .signup-button:hover {
+                    background: var(--bluebuttonhover);
                 }
             }
         }

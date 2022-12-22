@@ -55,9 +55,9 @@ const Signup = () => {
         validationSchema={signupSchema}
         onSubmit={onSubmit} >
         {({ isSubmitting }) => (
-            <Form className="form">
+            <Form className="form flex-column">
                 <div className="title">Register a new account</div>
-                <div className="inputs">
+                <div className="inputs flex-column">
                     <CustomInput
                         name="username"
                         type="text"

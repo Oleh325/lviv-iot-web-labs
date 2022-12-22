@@ -79,19 +79,19 @@ const Item = () => {
     }, [isShownPopup]);
 
     return(
-        <ItemContainer>
+        <ItemContainer className="flex-column">
             {popup}
             {isCatLoaded &&
             <ItemContent>
                 <img src={cat.imagesrc} alt=""></img>
-                <div className="content-specs">
+                <div className="content-specs flex-column">
                     <div className="options">
                         {cat.options?.map(option => {
                             const className = option === selectedOption ? "option selected" : "option";
                             return <button className={className} key={option} onClick={() => setSelectedOption(option)}>{option}</button>
                         })}
                     </div>
-                    <div className="text-content">
+                    <div className="text-content flex-column">
                         <div className="title">{cat.title}</div>
                         <div className="description">{cat.description}</div>
                     </div>
@@ -107,14 +107,14 @@ const Item = () => {
             <ItemFooter>
                 <div className="price">Price: {cat.price}$</div>
                 <div className="buttons">
-                    <Link to="/catalog" className="back-button"><div>Go back</div></Link>
-                    <button className="addtocart-button" onClick={addToCart}>Add to cart</button>
+                    <Link to="/catalog" className="button-white"><div>Go back</div></Link>
+                    <button className="button-gray" onClick={addToCart}>Add to cart</button>
                 </div>
             </ItemFooter>}
             {!isCatLoaded &&
-            <ItemEmpty>
+            <ItemEmpty className="flex-column">
                 <div className="empty-title">Item not found!</div>
-                <Link to="/catalog" className="back-button"><div>Catalog</div></Link>
+                <Link to="/catalog" className="button-gray"><div>Catalog</div></Link>
             </ItemEmpty>}
         </ItemContainer>
     );

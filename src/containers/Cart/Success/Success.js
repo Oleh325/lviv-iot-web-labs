@@ -5,11 +5,11 @@ import { Link } from "react-router-dom";
 
 const Success = () => {
     return(
-        <SuccessContainer>
+        <SuccessContainer className="flex-column">
             <img src={success} alt="success"></img>
             <div className="title">Success!</div>
             <div className="description">{"Your order was sent to processing!\n Check your email box for further information."}</div>
-            <Link to="/catalog" className="back-button">Go back to Catalog</Link>
+            <Link to="/catalog" className="button-gray back-button">Go back to Catalog</Link>
         </SuccessContainer>
     );
 }

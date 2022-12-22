@@ -7,8 +7,6 @@ export const CatalogItemContainer = styled.div`
     width: 20%;
     margin-left: 3.7rem;
     position: relative;
-    display: flex;
-    flex-direction: column;
     align-items: center;
     gap: 0.6rem;
     img {
@@ -19,18 +17,16 @@ export const CatalogItemContainer = styled.div`
     }
     .text-contents {
         width: 90%;
-        display: flex;
-        flex-direction: column;
         align-items: center;
         gap: 0.8rem;
     }
     .title {
         font-weight: 800;
         font-size: 2rem;
-        color: #333333;
+        color: var(--darkgray);
     }
     .description {
-        color: #444444;
+        color: var(--lightgray);
         min-height: 3.75rem;
         max-height: 3.75rem;
         overflow-x: hidden;
@@ -44,16 +40,16 @@ export const CatalogItemContainer = styled.div`
         justify-content: space-between;
     }
     .price-title {
-        color: #444444;
+        color: var(--lightgray);
     }
     .price {
         margin-right: 0rem;
-        color: #333333;
+        color: var(--darkgray);
         font-weight: 600;
     }
     .link {
         color: white;
-        background-color: #424242;
+        background-color: var(--lightgray);
         border: none;
         text-decoration: none;
         display: flex;
@@ -68,6 +64,9 @@ export const CatalogItemContainer = styled.div`
             text-align: center;
         }
     }
+    .link:hover {
+        background: var(--darkgray);
+    }
     button {
         position: absolute;
         bottom: 3.5%;
@@ -81,5 +80,8 @@ export const CatalogItemContainer = styled.div`
         color: white;
         font-weight: 600;
         text-align: center;
+    }
+    button:hover {
+        background: var(--darkred);
     }
 `

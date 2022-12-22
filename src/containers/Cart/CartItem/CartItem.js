@@ -42,7 +42,7 @@ const CartItem = ( { id, quantity, compositeId } ) => {
         <CartItemContainer>
             <div className="left-content">
                 <img src={cartCat.imagesrc} alt="cat"></img>
-                <div className="left-text">
+                <div className="left-text flex-column">
                     <div className="title">{cartCat.title}</div>
                     <div className="option">Option: {compositeId.replace(id, "")}</div>
                 </div>

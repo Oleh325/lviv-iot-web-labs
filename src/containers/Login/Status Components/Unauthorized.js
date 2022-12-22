@@ -8,9 +8,9 @@ const Unauthorized = () => {
     const goBack = () => navigate(-1);
 
     return (
-    <UnauthorizedContainer>
+    <UnauthorizedContainer className="flex-column">
         <div className="error-not-found">401 Unauthorized!</div>
-        <button className="go-back-button" onClick={goBack}>Go back</button>
+        <button className="go-back-button button-gray" onClick={goBack}>Go back</button>
     </UnauthorizedContainer>
     )
 }

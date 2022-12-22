@@ -61,7 +61,7 @@ const EditCat = () => {
     }
 
     return(
-        <EditCatContainer>
+        <EditCatContainer className="flex-column">
             <EditCatTitle>Edit Cat</EditCatTitle>
             <Formik initialValues={{
                 title,
@@ -77,8 +77,8 @@ const EditCat = () => {
             validationSchema={editCatSchema}
             onSubmit={onSubmit} >
             {({ isSubmitting }) => (
-                <Form>
-                    <div className="inputs">
+                <Form className="flex-column">
+                    <div className="inputs flex-column">
                         <CustomInput
                             label="Title"
                             name="title"
@@ -148,13 +148,13 @@ const EditCat = () => {
                         />
                     </div>
                     { imagesrc !== "" &&
-                    <div className="image-preview">
+                    <div className="image-preview flex-column">
                         <div className="image-preview-text">Image preview: </div>
                         <img src={imagesrc} alt="cat"></img>
                     </div>}
                     <div className="buttons">
-                        <Link to={"/item/" + id} className="back-button"><div>Go back</div></Link>
-                        <button disabled={isSubmitting} type="submit" className="continue-button">Edit cat</button>
+                        <Link to={"/item/" + id} className="button-white"><div>Go back</div></Link>
+                        <button disabled={isSubmitting} type="submit" className="button-gray">Edit cat</button>
                     </div>
                 </Form>
             )}

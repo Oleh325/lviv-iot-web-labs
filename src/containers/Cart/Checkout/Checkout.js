@@ -20,7 +20,7 @@ const Checkout = () => {
     }
 
     return(
-        <CheckoutContainer>
+        <CheckoutContainer className="flex-column">
             <CheckoutTitle>Checkout</CheckoutTitle>
             <Formik initialValues={{
                 firstName: "",
@@ -32,8 +32,8 @@ const Checkout = () => {
             validationSchema={checkoutSchema}
             onSubmit={onSubmit} >
             {({ isSubmitting }) => (
-                <Form>
-                <div className="inputs">
+                <Form className="flex-column">
+                <div className="inputs flex-column">
                     <div className="small-inputs">
                         <CustomInput
                             label="First Name"
@@ -70,8 +70,8 @@ const Checkout = () => {
                     />
                 </div>
                 <div className="buttons">
-                    <Link to="/cart" className="back-button"><div>Go back</div></Link>
-                    <button disabled={isSubmitting} type="submit" className="continue-button">Continue</button>
+                    <Link to="/cart" className="button-white"><div>Go back</div></Link>
+                    <button disabled={isSubmitting} type="submit" className="button-gray">Continue</button>
                 </div>
                 </Form>
             )}

@@ -1,8 +1,6 @@
 import styled from "styled-components";
 
 export const CatalogContainer = styled.div`
-    display: flex;
-    flex-direction: column;
     align-items: center;
     gap: 1rem;
     margin-bottom: 2rem;
@@ -23,13 +21,14 @@ export const FiltersContainer = styled.div`
         cursor: pointer;
         font-size: 1.5rem;
     }
+    button:hover {
+        background: var(--whitegray);
+    }
 `
 
 export const Filters = styled.div`
     width: 100%;
-    flex-direction: column;
     gap: 2rem;
-    display: flex;
     .filter-buttons-upper {
         display: flex;
         gap: 2rem;
@@ -41,6 +40,9 @@ export const Filters = styled.div`
         font-size: 1rem;
         font-family: sanspro-regular;
     }
+    button:hover {
+        background: var(--whitegray);
+    }
     .clear-filters {
         width: 11%;
         height: 3rem;
@@ -49,13 +51,22 @@ export const Filters = styled.div`
         color: red;
         font-family: sanspro-regular;  
     }
+    .clear-filters:hover {
+        background: var(--whitegray);
+    }
     .filters {
         display: block;
         font-size: 1.1rem;
     }
+    .filters:hover {
+        background: var(--whitegray);
+    }
     .selected {
         background-color: lightgray;
         font-weight: 600;
+    }
+    .selected:hover {
+        background: var(--selected-lightgray);
     }
     .hidden {
         display: none;
@@ -74,6 +85,7 @@ export const ItemsContainer = styled.div`
     row-gap: 2rem;
     flex-wrap: wrap;
     width: 100%;
+    margin-top: 1rem;
     .add-cat {
         border: 0.1rem solid darkgray;
         border-radius: 1rem;
@@ -81,8 +93,6 @@ export const ItemsContainer = styled.div`
         width: 20%;
         margin-left: 3.7rem;
         position: relative;
-        display: flex;
-        flex-direction: column;
         align-items: center;
         justify-content: center;
         gap: 0.6rem;
@@ -92,6 +102,9 @@ export const ItemsContainer = styled.div`
             color: darkgray;
             font-size: 10rem;
         }
+    }
+    .add-cat:hover {
+        background: var(--whitegray);
     }
     .loader, .loader:before, .loader:after {
         border-radius: 50%;
@@ -154,7 +167,7 @@ export const ItemsContainer = styled.div`
         position: relative;
     }
     .search-error {
-        color: #333333;
+        color: var(--darkgray);
         font-size: 2rem;
         margin: 3rem auto 0 auto;
         position: relative;

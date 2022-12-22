@@ -1,8 +1,6 @@
 import styled from "styled-components";
 
 export const ItemContainer = styled.div`
-    display: flex;
-    flex-direction: column;
     height: 92vh;
     margin: 2rem 3rem;
     gap: 10rem;
@@ -14,13 +12,16 @@ export const ItemContainer = styled.div`
         align-self: flex-end;
         border-radius: 0.75rem;
         border: none;
-        background-color: #5555FF;
+        background-color: var(--bluebutton);
         cursor: pointer;
         .text {
             color: white;
             font-size: 1rem;
             font-weight: 600;
         }
+    }
+    .edit-cat:hover {
+        background: var(--bluebuttonhover);
     }
     .shown {
         opacity: 1;
@@ -39,8 +40,6 @@ export const ItemContent = styled.div`
     }
     .content-specs {
         width: 60%;
-        display: flex;
-        flex-direction: column;
         gap: 1rem;
         height: 100%;
         justify-content: space-between;
@@ -63,18 +62,16 @@ export const ItemContent = styled.div`
         background: lightgray;
     }
     .text-content {
-        display: flex;
-        flex-direction: column;
         gap: 1rem;
     }
     .title {
         font-size: 3rem;
         font-weight: 600;
-        color: #333333;
+        color: var(--darkgray);
     }
     .description {
         font-size: 1.5rem;
-        color: #444444;
+        color: var(--lightgray);
         max-height: 11.45rem;
         min-height: 11.45rem;
         overflow-x: hidden;
@@ -98,37 +95,9 @@ export const ItemFooter = styled.div`
         display: flex;
         gap: 2rem;
     }
-    .back-button {
-        height: 3rem;
-        width: 8rem;
-        background: none;
-        color: #424242;      
-        border: 0.0625rem solid #424242;
-        text-decoration: none;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 0.75rem; 
-        font-weight: 600;
-        font-size: 1rem;
-        cursor: pointer; 
-    }
-    .addtocart-button {
-        height: 3rem;
-        width: 8rem;
-        background: #424242;
-        color: white;      
-        border: none;
-        border-radius: 0.75rem; 
-        font-weight: 600;
-        font-size: 1rem;
-        cursor: pointer; 
-    }
 `
 
 export const ItemEmpty = styled.div`
-    display: flex;
-    flex-direction: column;
     min-height: 90vh;
     align-items: center;
     justify-content: center;
@@ -136,21 +105,6 @@ export const ItemEmpty = styled.div`
     .empty-title {
         font-size: 4rem;
         font-weight: 600;
-        color: #333333;
-    }
-    .back-button {
-        height: 3rem;
-        width: 8rem;
-        background: #424242;
-        color: white;      
-        border: none;
-        text-decoration: none;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 0.75rem; 
-        font-weight: 600;
-        font-size: 1rem;
-        cursor: pointer; 
+        color: var(--darkgray);
     }
 `

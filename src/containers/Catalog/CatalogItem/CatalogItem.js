@@ -27,9 +27,9 @@ const CatalogItem = ( { title, description, price, imagesrc, id, hiddenClassName
     }, [auth.roles]);
 
     return (
-        <CatalogItemContainer className={hiddenClassName}>
+        <CatalogItemContainer className={hiddenClassName +" flex-column"}>
             <img src={imagesrc} alt="cat"></img>
-            <div className="text-contents">
+            <div className="text-contents flex-column">
                 <div className="title">{title}</div>
                 <div className="description">{description}</div>
                 <div className="price-content">

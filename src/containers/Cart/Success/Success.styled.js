@@ -1,8 +1,6 @@
 import styled from "styled-components";
 
 export const SuccessContainer = styled.div`
-    display: flex;
-    flex-direction: column;
     align-items: center;
     gap: 2rem;
     margin: 2rem auto;
@@ -14,26 +12,17 @@ export const SuccessContainer = styled.div`
     .title {
         font-size: 3rem;
         font-weight: 600;
-        color: #333333;
+        color: var(--darkgray);
     }
     .description {
         white-space: pre-line;
         text-align: center;
         font-size: 2rem;
-        color: #333333;
+        color: var(--darkgray);
     }
     .back-button {
         height: 4rem;
         width: 14rem;
-        background: #424242;
-        color: white;
-        text-decoration: none;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 0.75rem; 
-        font-weight: 600;
         font-size: 1.3rem;
-        cursor: pointer; 
     }
 `

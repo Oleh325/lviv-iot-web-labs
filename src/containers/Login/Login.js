@@ -46,9 +46,9 @@ const Login = () => {
         validationSchema={loginSchema}
         onSubmit={onSubmit} >
         {({ isSubmitting }) => (
-            <Form className="form">
+            <Form className="form flex-column">
                 <div className="title">Submit the form to sign in</div>
-                <div className="inputs">
+                <div className="inputs flex-column">
                     <CustomInput
                         name="email"
                         type="email"

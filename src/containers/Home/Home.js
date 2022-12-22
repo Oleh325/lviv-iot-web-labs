@@ -23,15 +23,15 @@ const Home = () => {
     }
 
     return(
-        <HomeContainer>
+        <HomeContainer className="flex-column">
             <Heading>
             <img src={cats} alt={"cats"}></img>
-            <TextContent>
+            <TextContent className="flex-column">
                 <Title>Heading</Title>
                 <Description>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc maximus, nulla ut commodo sagittis, sapien dui mattis dui, non pulvinar lorem felis nec erat</Description>
             </TextContent>
             </Heading>
-            <ContentCats>
+            <ContentCats className="flex-column">
                 <Tiles>
                     <Tile image={cat1} title="Tile 1 heading" description={tileDesc} id={1} />
                     <Tile image={cat2} title="Tile 2 heading" description={tileDesc} id={2} />
@@ -41,7 +41,7 @@ const Home = () => {
                     <Tile image={cat1} title="Tile 6 heading" description={tileDesc} id={6} className={"tile " + hidden} />
                 </Tiles>
                 <div className="hider">
-                    <button onClick={() => showOrHide()}>{buttonText}</button>
+                    <button onClick={() => showOrHide()} className="button-gray">{buttonText}</button>
                 </div>
             </ContentCats>
         </HomeContainer>

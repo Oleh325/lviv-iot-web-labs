@@ -1,8 +1,6 @@
 import styled from "styled-components";
 
 export const CreateCatContainer = styled.div`
-    display: flex;
-    flex-direction: column;
     align-items: center;
     gap: 1rem;
     margin: 2rem auto;
@@ -10,13 +8,9 @@ export const CreateCatContainer = styled.div`
     min-height: 87vh;
     Form {
         width: 100%;
-        display: flex;
-        flex-direction: column;
         align-items: center;
         gap: 3rem;
         .image-preview {
-            display: flex;
-            flex-direction: column;
             align-items: center;
             gap: 1rem;
             .image-preview-text {
@@ -30,7 +24,7 @@ export const CreateCatContainer = styled.div`
     }
     label {
         font-size: 2rem;
-        color: #333333;
+        color: var(--darkgray);
         align-self: flex-start;
     }
     .slidecontainer {
@@ -47,8 +41,6 @@ export const CreateCatContainer = styled.div`
         }
     }
     .inputs {
-        display: flex;
-        flex-direction: column;
         width: 60%;
         align-items: center;
         gap: 1rem;
@@ -59,13 +51,11 @@ export const CreateCatContainer = styled.div`
         width: 100%;
     }
     .custom-input {
-        display: flex;
-        flex-direction: column;
         gap: 0.2rem;
         width: 100%;
         label {
             font-size: 2rem;
-            color: #333333;
+            color: var(--darkgray);
         }
         input {
             height: 2.5rem;
@@ -88,32 +78,6 @@ export const CreateCatContainer = styled.div`
         justify-content: space-between;
         width: 100%;
     }
-    .back-button {
-        height: 3rem;
-        width: 8rem;
-        background: none;
-        color: #424242;      
-        border: 0.0625rem solid #424242;
-        text-decoration: none;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 0.75rem; 
-        font-weight: 600;
-        font-size: 1rem;
-        cursor: pointer; 
-    }
-    .continue-button {
-        height: 3rem;
-        width: 8rem;
-        border-radius: 0.75rem; 
-        background: #424242;
-        color: white;
-        font-weight: 600;
-        font-size: 1rem;
-        border: none;
-        cursor: pointer; 
-    }
     button:disabled {
         opacity: 35%;
     }
@@ -122,5 +86,5 @@ export const CreateCatContainer = styled.div`
 export const CreateCatTitle = styled.div`
     font-size: 3rem;
     font-weight: 600;
-    color: #333333;
+    color: var(--darkgray);
 `

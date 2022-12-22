@@ -17,9 +17,7 @@ const NavElement = ( { link, text } ) => {
 
     return(
         <li>
-            <div className={selectedClassName}>
-                <Link to={link} className="link">{text}</Link>
-            </div>
+            <Link to={link} className={selectedClassName + " link"}><div className="text">{text}</div></Link>
         </li>
     );
 }

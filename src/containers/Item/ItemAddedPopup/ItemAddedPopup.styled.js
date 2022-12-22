@@ -12,15 +12,13 @@ export const ItemAddedPopupContainer = styled.div`
     background-color: lightgrey;
     border: 0.01rem solid darkgray;
     border-radius: 0.8rem;
-    display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 1rem;
     cursor: default;
     pointer-events: none;
     .message {
-        color: #333333;
+        color: var(--darkgray);
         font-weight: 600;
         font-size: 1.2rem;
         text-align: center;
@@ -33,8 +31,11 @@ export const ItemAddedPopupContainer = styled.div`
         text-decoration: none;
         text-align: center;
         background-color: white;
-        color: #333333;
+        color: var(--darkgray);
         cursor: default;
+    }
+    .link:hover {
+        background-color: var(--whitegray);
     }
     .shown {
         cursor: pointer;

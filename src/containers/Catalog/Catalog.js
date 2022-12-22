@@ -51,12 +51,12 @@ const Catalog = () => {
     }
 
     useEffect(() => {
-        if (filtersList.length !== 0) {
+        if (filtersList.find((filter) => filter.filter !== "all")) {
             setIsFiltersOn(true);
         }
         applyFilters();
         auth.roles?.find(role => role === "ADMIN")
-            ? setAddCat(<button className="add-cat" onClick={() => navigate("/addcat")}><div className="text">+</div></button>)
+            ? setAddCat(<button className="add-cat flex-column" onClick={() => navigate("/addcat")}><div className="text">+</div></button>)
             : setAddCat(<></>);
 
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -70,26 +70,48 @@ const Catalog = () => {
 
     useEffect(() => {
         setCats(cats?.map(cat => {
-            if (cat.title.search(input) !== -1 || input === "" || input === null) {
+            if (cat.title.match(new RegExp(input, "i")) !== null || input === "" || input === null) {
                 cat.hidden = "";
             } else {
                 cat.hidden = "hidden";
             }
             return cat;
         }));
+        checkForSearchError([]);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [input]);
+
+    const checkForSearchError = (fetchedCats) => {
         let shownCats = 0;
-        cats.forEach(cat => {
-            if (cat.hidden === "" || cat.hidden === undefined) {
-                shownCats += 1;
-            }
-        });
-        if (shownCats === 0 && cats.length !== 0) {
+
+        if (fetchedCats?.length === 0 || fetchedCats === undefined) {
+            cats.forEach(cat => {
+                if (cat.title.match(new RegExp(input, "i")) !== null || input === "" || input === null) {
+                    shownCats += 1;
+                }
+            });
+        } else {
+            fetchedCats.forEach(cat => {
+                if (cat.title.match(new RegExp(input, "i")) !== null || input === "" || input === null) {
+                    shownCats += 1;
+                }
+            });
+        }
+
+        if (error !== "" && error !== undefined) {
+            shownCats += 1;
+        }
+
+        if (filtersList.find((filter) => filter.filter !== "all") && (fetchedCats === undefined)) {
+            shownCats = 0;
+        }
+
+        if (shownCats === 0) {
             setSearchError("No cats found!");
         } else {
             setSearchError("");
         }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [input]);
+    }
 
     const applyFilters = async () => {
         setCats([]);
@@ -107,15 +129,16 @@ const Catalog = () => {
             weight = filtersList.find((filter) => filter.name === "weight").filter;
         }
         const [fetchedCats, err] = await getCatsWithFilters(cuteness, color, weight);
-        setError(!err?.response ? "No Server Response" : err);
+        setError(err ? (!err?.response ? "No Server Response" : err) : "");
         setCats(fetchedCats === undefined || fetchedCats == null ? [] : fetchedCats?.map(cat => {
-            if (cat.title.search(input) !== -1 || input === "" || input === null) {
+            if (cat.title.match(new RegExp(input, "i")) !== null || input === "" || input === null) {
                 cat.hidden = "";
             } else {
                 cat.hidden = "hidden";
             }
             return cat;
         })?.sort((a, b) => a.id - b.id));
+        checkForSearchError(fetchedCats);
         setLoaderHidden(true);
     }
 
@@ -166,15 +189,16 @@ const Catalog = () => {
         setCats([]);
         setLoaderHidden(false);
         const [fetchedCats, err] = await getCats();
-        setError(!err?.response ? "No Server Response" : err);
+        setError(err ? (!err?.response ? "No Server Response" : err) : "");
         setCats(fetchedCats === undefined || fetchedCats == null ? [] : fetchedCats?.map(cat => {
-            if (cat.title.search(input) !== -1 || input === "" || input === null) {
+            if (cat.title.match(new RegExp(input, "i")) !== null || input === "" || input === null) {
                 cat.hidden = "";
             } else {
                 cat.hidden = "hidden";
             }
             return cat;
         })?.sort((a, b) => a.id - b.id));
+        checkForSearchError(fetchedCats);
         setLoaderHidden(true);
     }
 
@@ -197,9 +221,9 @@ const Catalog = () => {
     }
 
     return(
-        <CatalogContainer>
+        <CatalogContainer className="flex-column">
             <FiltersContainer>
-                <Filters>
+                <Filters className="flex-column">
                     <div className="filter-buttons-upper">
                         <button type="button"
                                 onClick={() => setIsFiltersOn(!isFiltersOn)}
@@ -224,7 +248,7 @@ const Catalog = () => {
                     price={cat.price} id={cat.id} key={cat.id} hiddenClassName={cat.hidden ? cat.hidden : ""}
                     refreshAfterDelete={refreshAfterDelete} />
                 })}
-                {cats.length !== 0 && addCat}
+                {cats.length !== 0 && (searchError === "" || searchError === undefined) && addCat}
             </ItemsContainer>
         </CatalogContainer>
     );

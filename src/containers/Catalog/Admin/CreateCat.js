@@ -33,7 +33,7 @@ const CreateCat = () => {
     }
 
     return(
-        <CreateCatContainer>
+        <CreateCatContainer className="flex-column">
             <CreateCatTitle>Create Cat</CreateCatTitle>
             <Formik initialValues={{
                 title: "",
@@ -48,8 +48,8 @@ const CreateCat = () => {
             validationSchema={addCatSchema}
             onSubmit={onSubmit} >
             {({ isSubmitting }) => (
-                <Form>
-                <div className="inputs">
+                <Form className="flex-column">
+                <div className="inputs flex-column">
                     <CustomInput
                         label="Title"
                         name="title"
@@ -106,13 +106,13 @@ const CreateCat = () => {
                     />
                 </div>
                 { imagesrc !== "" &&
-                <div className="image-preview">
+                <div className="image-preview flex-column">
                     <div className="image-preview-text">Image preview: </div>
                     <img src={imagesrc} alt="cat"></img>
                 </div>}
                 <div className="buttons">
-                    <Link to="/catalog" className="back-button"><div>Go back</div></Link>
-                    <button disabled={isSubmitting} type="submit" className="continue-button">Create cat</button>
+                    <Link to="/catalog" className="button-white"><div>Go back</div></Link>
+                    <button disabled={isSubmitting} type="submit" className="button-gray">Create cat</button>
                 </div>
                 </Form>
             )}
