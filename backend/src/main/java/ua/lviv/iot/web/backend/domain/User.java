@@ -35,7 +35,7 @@ public class User implements UserDetails {
     }
 
     @Basic
-    @Column(name = "username")
+    @Column(name = "username", length = 45)
     public String getUsernameUser() {
         return usernameUser;
     }

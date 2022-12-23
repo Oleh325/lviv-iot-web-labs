@@ -47,6 +47,8 @@ export const ItemContent = styled.div`
         height: 10%;
         display: flex;
         gap: 0.5rem;
+        max-width: 53.7rem;
+        overflow-y: hidden;
     }
     .option {
         background: none;
@@ -54,7 +56,10 @@ export const ItemContent = styled.div`
         border-radius: 0.5rem;
         padding: 0 1rem;
         height: 100%;
+        min-width: fit-content;
         font-size: 1rem;
+        max-height: 2.25rem;
+        white-space: nowrap;
     }
     .selected {
         background: lightgray;
@@ -66,6 +71,10 @@ export const ItemContent = styled.div`
         font-size: 3rem;
         font-weight: 600;
         color: var(--darkgray);
+        max-width: 53.7rem;
+        max-height: 3.75rem;
+        white-space: nowrap;
+        overflow-y: hidden;
     }
     .description {
         font-size: 1.5rem;
