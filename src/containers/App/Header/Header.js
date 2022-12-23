@@ -4,7 +4,7 @@ import logo from "../../../images/logo.png";
 import meow from "../../../meow.wav";
 import Navigation from "../../Navigation/Navigation";
 import Searchbar from "../../Catalog/Searchbar/Searchbar";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
 import { useDispatch, useSelector } from "react-redux";
 import { authActions } from "../../../store/slices/authSlice";

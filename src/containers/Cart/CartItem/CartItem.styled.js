@@ -50,7 +50,6 @@ export const CartItemContainer = styled.div`
                 border: 0.01rem black solid;
                 border-radius: 0.5rem;
                 font-size: 1.5rem;
-                cursor: pointer;
             }
             button:hover {
                 background: var(--whitegray);
@@ -79,7 +78,6 @@ export const CartItemContainer = styled.div`
             border-radius: 0.75rem; 
             font-weight: 600;
             font-size: 1rem;
-            cursor: pointer;
         }
         .remove-button:hover {
             background: var(--darkred);

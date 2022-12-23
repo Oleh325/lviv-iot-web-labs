@@ -74,7 +74,6 @@ export const LoginContainer = styled.div`
                     width: 9rem;
                     color: white;
                     font-weight: 600;
-                    cursor: pointer;
                 }
                 .login-button:hover {
                     background: var(--bluebuttonhover);

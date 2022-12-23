@@ -76,7 +76,6 @@ export const CatalogItemContainer = styled.div`
         background-color: red;
         border: none;
         border-radius: 0.25rem;
-        cursor: pointer;
         color: white;
         font-weight: 600;
         text-align: center;

@@ -52,6 +52,10 @@ code {
     flex-direction: column;
 }
 
+button {
+    cursor: pointer;
+}
+
 .button-white {
     height: 3rem;
     width: 8rem;
@@ -65,7 +69,6 @@ code {
     border-radius: 0.75rem; 
     font-weight: 600;
     font-size: 1rem;
-    cursor: pointer; 
 }
 
 .button-white:hover {
@@ -85,7 +88,6 @@ code {
     border-radius: 0.75rem; 
     font-weight: 600;
     font-size: 1rem;
-    cursor: pointer; 
 }
 
 .button-gray:hover {

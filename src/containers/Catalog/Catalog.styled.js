@@ -18,7 +18,6 @@ export const FiltersContainer = styled.div`
         background: none;
         border: 0.095rem solid black;
         border-radius: 1rem;
-        cursor: pointer;
         font-size: 1.5rem;
     }
     button:hover {
@@ -96,7 +95,6 @@ export const ItemsContainer = styled.div`
         align-items: center;
         justify-content: center;
         gap: 0.6rem;
-        cursor: pointer;
         background: none;
         .text {
             color: darkgray;

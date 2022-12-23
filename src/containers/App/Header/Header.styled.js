@@ -28,7 +28,6 @@ export const HeaderContainer = styled.div`
             border-radius: 0.75rem;
             height: 2rem;
             width: 6rem;
-            cursor: pointer;
         }
         .log-out-button:hover {
             background: var(--whitegray);

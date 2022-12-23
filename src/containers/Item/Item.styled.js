@@ -13,7 +13,6 @@ export const ItemContainer = styled.div`
         border-radius: 0.75rem;
         border: none;
         background-color: var(--bluebutton);
-        cursor: pointer;
         .text {
             color: white;
             font-size: 1rem;
@@ -56,7 +55,6 @@ export const ItemContent = styled.div`
         padding: 0 1rem;
         height: 100%;
         font-size: 1rem;
-        cursor: pointer;
     }
     .selected {
         background: lightgray;

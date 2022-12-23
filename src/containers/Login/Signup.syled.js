@@ -75,7 +75,6 @@ export const SignupContainer = styled.div`
                     width: 9rem;
                     color: white;
                     font-weight: 600;
-                    cursor: pointer;
                 }
                 .signup-button:hover {
                     background: var(--bluebuttonhover);
