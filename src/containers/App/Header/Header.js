@@ -30,9 +30,10 @@ const Header = () => {
     }
 
     const signOut = async () => {
-        await axiosPrivate("/auth/signout");
-        dispatch(authActions.logOut());
-        navigate("/login");
+        await axiosPrivate("/auth/signout").finally(() => {
+            dispatch(authActions.logOut());
+            navigate("/login");
+        });
     }
 
     return(

@@ -23,7 +23,6 @@ const useAxiosPrivate = () => {
             response => response,
             async (error) => {
                 const prevRequest = error?.config;
-                console.log(error);
                 if (error?.response?.data?.message === "Token has expired!" && !prevRequest?.sent) {
                     prevRequest.sent = true;
                     const newAccessToken = await refresh();

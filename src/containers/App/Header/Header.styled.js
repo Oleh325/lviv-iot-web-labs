@@ -1,4 +1,16 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
+
+const sliding = (widthRem) => keyframes`
+    0% {
+        right: 0rem;
+    }
+    75%, 85% {
+        right: calc(${widthRem} - 9rem);
+    }
+    85.01% {
+        right: 0rem;
+    }       
+`;
 
 export const HeaderContainer = styled.div.attrs(props => ({
     width: props.width || "9",
@@ -24,23 +36,12 @@ export const HeaderContainer = styled.div.attrs(props => ({
             max-width: 8.4rem;
             overflow-wrap: normal;
             overflow-x: hidden;
-            @keyframes sliding {
-                0% {
-                    right: 0rem;
-                }
-                75%, 85% {
-                    right: calc(${props => props.widthRem} - 9rem);
-                }
-                85.01% {
-                    right: 0rem;
-                }
-            }
             #username {
                 position: relative;
                 right: 0rem;
                 color: var(--darkgray);
                 font-size: 1.4rem;
-                animation-name: sliding;
+                animation-name: ${props => sliding(props.widthRem)};
                 animation-duration: calc(0.4s * ${props => props.width});
                 animation-iteration-count: infinite;
                 animation-timing-function: linear;
